@@ -1,7 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/**
+ * @swagger
+ * definitions:
+ *   Login:
+ *     required:
+ *       - username
+ *       - password
+ *     properties:
+ *       username:
+ *         type: string
+ *       password:
+ *         type: string
+ *       path:
+ *         type: string
+ */
 router.get('/fuck', function(req, res, next) {
   res.send('respond with a resource');
 });
