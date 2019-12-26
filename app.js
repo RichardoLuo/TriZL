@@ -3,14 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//router
+
+//router require
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
+
 // swagger
 const swaggerUi = require('swagger-ui-express');
 var swaggerJSDoc = require('swagger-jsdoc');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,11 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// router
-app.use('/', indexRouter);
-app.use('/user', userRouter);
 
-// swagger
+// swagger init
 var swaggerDefinition = {
   info: {
     title: 'Node Swagger API',
@@ -36,6 +36,7 @@ var swaggerDefinition = {
   host: 'localhost:3000',
   basePath: '/',
 };
+
 // options for the swagger docs
 var options = {
   // import swaggerDefinitions
@@ -43,15 +44,23 @@ var options = {
   // path to the API docs
   apis: ['./routes/*.js'],
 };
+
 // initialize swagger-jsdoc
 var swaggerSpec = swaggerJSDoc(options);
+
 // serve swagger
 app.get('/swagger.json', function(req, res) {
   res.setHeader('Content-Type', 'application/json');
   res.send(swaggerSpec);
 });
+
+// router swagger
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+
+// router
+app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,9 +78,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// favico
-app.get('/favico.ico', (req, res) => {
-  res.sendFile("favico.ico");
+// favicon
+app.get('/favicon.ico', (req, res) => {
+  res.sendFile("favicon.ico");
 });
 
 module.exports = app;
