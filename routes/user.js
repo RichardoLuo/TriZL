@@ -1,6 +1,7 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
+let UserController = require('../controller/UserController');
 
 /**
  * @swagger
@@ -9,33 +10,63 @@ var router = express.Router();
  *     properties:
  *       name:
  *         type: string
- *       age:
- *         type: integer
+ *       address:
+ *         type: string
+ *       phone:
+ *         type: string
  */
 
 /**
  * @swagger
- * /user/{id}:
+ * /user/{name}:
  *   get:
  *     tags:
  *       - User
- *     description: get a user info
+ *     description: 根据用户名获取用户信息
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: id
- *         description: user's id
+ *       - name: name
+ *         description: 用户名
  *         in: path
  *         required: true
- *         type: integer
+ *         type: string
  *     responses:
  *       200:
  *         description: ok
  *         schema:
  *           $ref: '#/definitions/User'
+ *       500:
+ *         description: error
  */
-router.get('/:id', function(req, res, next) {
-  res.json(req.params.id);
-});
+router.get('/:name',UserController.getUserByName);
+
+/**
+ * @swagger
+ * /user/password:
+ *   put:
+ *     tags:
+ *       - User
+ *     description: 修改用户密码
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: name
+ *         description: 用户名
+ *         in: body
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: 密码
+ *         in: body
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: ok
+ *       500:
+ *         description: error
+ */
+router.put('/password',UserController.updatePassword);
 
 module.exports = router;
