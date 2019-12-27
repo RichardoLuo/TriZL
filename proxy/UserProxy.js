@@ -36,3 +36,31 @@ exports.updatePassword = function (name,pwd,callback) {
 	//todo database
 	callback(null)
 };
+
+/**
+ * 判断密码
+ * callback:
+ * - err
+ * @param name 用户名
+ * @param pwd 密码
+ * @param callback
+ * @returns {*}
+ */
+exports.checkPassword = function (name,pwd,callback) {
+	if (!name || name.length === 0) {
+		return callback("name is null or the length is 0");
+	}
+	if (!pwd || pwd.length === 0) {
+		return callback("pwd is null or the length is 0");
+	}
+	//todo database
+	let flag = name === "zxc" && pwd === "zxc";
+	//如果正确
+	if(flag){
+		callback(null);
+	}
+	//如果不正确
+	else{
+		callback("name or password is wrong");
+	}
+};

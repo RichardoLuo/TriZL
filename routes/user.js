@@ -69,4 +69,32 @@ router.get('/:name',UserController.getUserByName);
  */
 router.put('/password',UserController.updatePassword);
 
+/**
+ * @swagger
+ * /user/session:
+ *   post:
+ *     tags:
+ *       - User
+ *     description: 用户登录
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: name
+ *         description: 用户名
+ *         in: body
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         description: 密码
+ *         in: body
+ *         required: true
+ *         type: string
+ *     responses:
+ *       200:
+ *         description: ok
+ *       500:
+ *         description: error
+ */
+router.post('/session',UserController.checkPassword);
+
 module.exports = router;
