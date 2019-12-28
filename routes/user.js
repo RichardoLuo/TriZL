@@ -55,17 +55,13 @@ router.get('/:name',UserController.getUserByName);
  *         description: 用户名
  *         in: body
  *         required: true
- *         type: string
  *       - name: password
  *         description: 密码
  *         in: body
  *         required: true
- *         type: string
  *     responses:
  *       200:
  *         description: ok
- *       500:
- *         description: error
  */
 router.put('/password',UserController.updatePassword);
 
