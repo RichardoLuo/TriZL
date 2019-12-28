@@ -51,10 +51,14 @@ exports.updatePassword = function (req, res, next) {
 exports.login = function (req, res, next) {
 	let name = req.body.name;
 	let password = req.body.password;
+
 	if(req.session.login || req.signedCookies.login){
+		//两个至少有一个就行
 		res.send(req.session.login+"..."+req.signedCookies.login);
 		return;
 	}
+	//会话到期，即两者全部失效
+	//登录
 	UserProxy.checkPassword(name,password,function (err) {
 		if(!err){
 			//用户名密码一致
@@ -68,7 +72,6 @@ exports.login = function (req, res, next) {
 					// res.json({err:null})
 					res.send("first")
 				}
-
 			});
 			
 		}
