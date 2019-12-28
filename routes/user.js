@@ -36,8 +36,6 @@ let UserController = require('../controller/UserController');
  *         description: ok
  *         schema:
  *           $ref: '#/definitions/User'
- *       500:
- *         description: error
  */
 router.get('/:name',UserController.getUserByName);
 
@@ -51,14 +49,17 @@ router.get('/:name',UserController.getUserByName);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: name
+ *       - name: body
  *         description: 用户名
  *         in: body
  *         required: true
- *       - name: password
- *         description: 密码
- *         in: body
- *         required: true
+ *         schema:
+ *           properties:
+ *             name:
+ *               type: string
+ *             password:
+ *               type: string
+ *
  *     responses:
  *       200:
  *         description: ok
@@ -75,22 +76,66 @@ router.put('/password',UserController.updatePassword);
  *     produces:
  *       - application/json
  *     parameters:
- *       - name: name
- *         description: 用户名
+ *       - name: body
+ *         description: 用户名以及密码
  *         in: body
  *         required: true
- *         type: string
- *       - name: password
- *         description: 密码
- *         in: body
- *         required: true
- *         type: string
+ *         schema:
+ *           properties:
+ *             name:
+ *               type: string
+ *             password:
+ *               type: string
+ *
  *     responses:
  *       200:
  *         description: ok
- *       500:
- *         description: error
  */
-router.post('/session',UserController.checkPassword);
+router.post('/session',UserController.login);
+
+/**
+ * @swagger
+ * /user/session:
+ *   delete:
+ *     tags:
+ *       - User
+ *     description: 退出登录
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: ok
+ */
+router.delete('/session',UserController.logout);
+
+/**
+ * @swagger
+ * /user:
+ *   post:
+ *     tags:
+ *       - User
+ *     description: 注册用户
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         description: 用户信息和密码
+ *         in: body
+ *         required: true
+ *         schema:
+ *           properties:
+ *             name:
+ *               type: string
+ *             address:
+ *               type: string
+ *             phone:
+ *               type: string
+ *             password:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: ok
+ */
+router.post('/',UserController.logup);
 
 module.exports = router;

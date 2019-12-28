@@ -1,5 +1,7 @@
 let UserProxy = require('../proxy/UserProxy');
 
+
+
 /**
  * 根据用户名查询用户
  * @param req
@@ -11,12 +13,11 @@ exports.getUserByName = function (req, res, next) {
 	UserProxy.getUserByName(userName,function (err,user) {
 		if(!err){
 			//返回用户
-			res.json({user});
+			res.json({user,err:err});
 		}
 		else{
 			//失败
-			res.status(500);
-			res.send(err);
+			res.json({err:err});
 		}
 	});
 };
@@ -33,12 +34,10 @@ exports.updatePassword = function (req, res, next) {
 	UserProxy.updatePassword(name,password,function (err) {
 		if(!err){
 			//修改成功
-			res.end();
+			res.json({err:err})
 		}
 		else{
-			//修改失败
-			res.status(500);
-			res.send(err);
+			res.json({err:err})
 		}
 	})
 };
@@ -49,20 +48,70 @@ exports.updatePassword = function (req, res, next) {
  * @param res
  * @param next
  */
-exports.checkPassword = function (req, res, next) {
+exports.login = function (req, res, next) {
 	let name = req.body.name;
 	let password = req.body.password;
+	if(req.session.login || req.signedCookies.login){
+		res.send(req.session.login+"..."+req.signedCookies.login);
+		return;
+	}
 	UserProxy.checkPassword(name,password,function (err) {
 		if(!err){
-			//登录成功
+			//用户名密码一致
+			req.session.regenerate(function(err) {
+				if(err){
+					return res.json({err:err});
+				}
+				else{
+					req.session.login = true;
+					res.cookie('login', true, { maxAge: 60 * 1000 * 60, signed: true});
+					// res.json({err:null})
+					res.send("first")
+				}
+
+			});
 			
-			//todo 登录态保存
-			res.end();
 		}
 		else{
 			//登录失败
-			res.status(500);
-			res.send(err);
+			res.json({err:err})
 		}
 	})
 };
+
+/**
+ * 退出登录
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.logout = function (req, res, next) {
+	//todo
+	req.session.destroy(function (err) {
+		if(err){
+			//失败
+			res.json({err:err});
+			return;
+		}
+		//成功
+		res.clearCookie("session");
+		res.clearCookie("login");
+		res.json({err:null});
+	})
+
+};
+
+/**
+ * 注册用户
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.logup = function (req, res, next) {
+	//todo
+
+	//成功
+	res.json({err:null})
+};
+
+

@@ -1,5 +1,33 @@
 let UserModel = require('../model/UserModel');
 
+let mysql = require('mysql');
+let configDb = require('../config/db');
+let pool = mysql.createPool(configDb.mysql);
+
+// todo
+// pool.getConnection((err,connection)=>{
+// 	if(err){
+// 		console.log(err);
+// 	}
+// 	else{
+// 		connection.query('select * from book', function(err, rows, fields) {
+// 			if (err) throw err;
+// 			console.log(rows)
+// 		});
+// 	}
+// });
+pool.getConnection((err,connection)=>{
+	if(err){
+		console.log(err);
+	}
+	else{
+		connection.query('select * from actor', function(err, rows, fields) {
+			if (err) throw err;
+
+		});
+	}
+});
+
 /**
  * 根据用户名查询用户
  * callback:

@@ -8,10 +8,19 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 
-// swagger
+// swagger require
 const swaggerUi = require('swagger-ui-express');
 var swaggerJSDoc = require('swagger-jsdoc');
+let configSwagger = require('./config/swagger');
 
+// session redis require
+const redis = require('redis');
+const session = require('express-session');
+let RedisStore = require('connect-redis')(session);
+let redisClient = redis.createClient();
+let configSession = require('./config/session');
+
+//express
 var app = express();
 
 
@@ -22,31 +31,27 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(configSession.secret));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// swagger init
-var swaggerDefinition = {
-  info: {
-    title: 'Node Swagger API',
-    version: '1.0.0',
-    description: 'book 接口文档',
-  },
-  host: 'localhost:3000',
-  basePath: '/',
-};
-
-// options for the swagger docs
-var options = {
-  // import swaggerDefinitions
-  swaggerDefinition: swaggerDefinition,
-  // path to the API docs
-  apis: ['./routes/*.js'],
-};
-
 // initialize swagger-jsdoc
-var swaggerSpec = swaggerJSDoc(options);
+var swaggerSpec = swaggerJSDoc(configSwagger.swaggerOptions);
+
+// session
+app.use(session({
+  name: 'session',                        // 这里是cookie的name，默认是connect.sid
+  secret: configSession.secret,           // 建议使用 128 个字符的随机字符串
+  resave: true,                           // 是否每次都重新保存会话，建议false
+  saveUninitialized: false,
+  store: new RedisStore({
+    client: redisClient,
+  }),
+}));
+
+// ---------- router -----------
+
+app.use('/', indexRouter);
+app.use('/user', userRouter);
 
 // serve swagger
 app.get('/swagger.json', function(req, res) {
@@ -56,11 +61,6 @@ app.get('/swagger.json', function(req, res) {
 
 // router swagger
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-
-// router
-app.use('/', indexRouter);
-app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -82,5 +82,9 @@ app.use(function(err, req, res, next) {
 app.get('/favicon.ico', (req, res) => {
   res.sendFile("favicon.ico");
 });
+
+//---------- router -----------
+
+
 
 module.exports = app;
