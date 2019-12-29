@@ -1,18 +1,11 @@
 module.exports = {
 	mysql: {
-		host: '127.0.0.1',
+		host: '10.203.143.14',
 		user: 'root',
-		password: ' ',
-		database: 'sakila',
+		password: '',
+		database: 'bookstore',
 		port: 3306
 	},
-	// mysql: {
-	// 	host: '10.203.136.79',
-	// 	user: 'user',
-	// 	password: '123456',
-	// 	database: 'librarydatabase',
-	// 	port: 3306
-	// },
 	
 	redis: {
 		host: '127.0.0.1',

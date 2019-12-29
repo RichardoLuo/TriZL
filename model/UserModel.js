@@ -25,7 +25,7 @@ exports.sql = function () {
 		//密码加密
 		let md5 = require('md5');
 		let passWD = md5(password);
-		return "SELECT Members.* FROM Members WHERE  MemberName = {0} AND PassWD= {1}".format(name,passWD);
+		return "SELECT Members.* FROM Members WHERE  MemberName = '{0}' AND PassWD= '{1}'".format(name,passWD);
 	}
 	
 	/**
@@ -33,7 +33,7 @@ exports.sql = function () {
 	 * @param name 用户名
 	 */
 	function selectMember(name) {
-		return "SELECT Members.* FROM Members WHERE  MemberName = {0}".format(name);
+		return "SELECT Members.* FROM Members WHERE  MemberName = '{0}'".format(name);
 	}
 	
 	/**
@@ -56,7 +56,7 @@ exports.sql = function () {
 	function createUser(name,password,mail,phone,address) {
 		let md5 = require('md5');
 		let pwd = md5(password);
-		return "INSERT INTO Members (MemberName, PassWD, Mail, Phone, Address) VALUES ({0}, {1}, {2}, {3}, {4})".format(name,pwd,mail,phone,address);
+		return "INSERT INTO Members (MemberName, PassWD, Mail, Phone, Address) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')".format(name,pwd,mail,phone,address);
 	}
 	
 	/**
@@ -65,7 +65,7 @@ exports.sql = function () {
 	 * @returns {string | ServerResponse | *}
 	 */
 	function deleteUser(name) {
-		return "DELETE FROM [Members] WHERE ([MemberName] = {0}".format(name);
+		return "DELETE FROM Members WHERE (MemberName = '{0}')".format(name);
 	}
 	
 	/**
@@ -76,7 +76,7 @@ exports.sql = function () {
 	 * @param name
 	 */
 	function updateUser(mail,phone,address,name) {
-		return "UPDATE Members SET Mail={0}，Phone = {1}，Address = {2} WHERE MemberName = {3}".format(mail,phone,address,name);
+		return "UPDATE Members SET Mail='{0}', Phone = '{1}', Address = '{2}' WHERE MemberName = '{3}'".format(mail,phone,address,name);
 	}
 	
 	/**
@@ -88,7 +88,7 @@ exports.sql = function () {
 	function changePassword(name,password) {
 		let md5 = require('md5');
 		let pwd = md5(password);
-		return "UPDATE Members SET PassWD={0} WHERE MemberName = {1}".format(pwd,name);
+		return "UPDATE Members SET PassWD='{0}' WHERE MemberName = '{1}'".format(pwd,name);
 	}
 	return {
 		selectMember: selectMember,

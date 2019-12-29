@@ -13,11 +13,11 @@ exports.getUserByName = function (req, res, next) {
 	UserProxy.getUserByName(userName,function (err,user) {
 		if(!err){
 			//返回用户
-			res.json({user,err:err});
+			return res.json({user,err:err});
 		}
 		else{
 			//失败
-			res.json({err:err});
+			return res.json({err:err});
 		}
 	});
 };
@@ -34,10 +34,10 @@ exports.updatePassword = function (req, res, next) {
 	UserProxy.updatePassword(name,password,function (err) {
 		if(!err){
 			//修改成功
-			res.json({err:err})
+			return res.json({err:err})
 		}
 		else{
-			res.json({err:err})
+			return res.json({err:err})
 		}
 	})
 };
@@ -68,14 +68,14 @@ exports.login = function (req, res, next) {
 				else{
 					req.session.name = name;
 					
-					res.send("登录成功")
+					return res.send("登录成功")
 				}
 			});
 			
 		}
 		else{
 			//登录失败
-			res.json({err:err})
+			return res.json({err:err})
 		}
 	})
 };
@@ -95,7 +95,7 @@ exports.logout = function (req, res, next) {
 			return;
 		}
 		//成功
-		res.json({err:null});
+		return res.json({err:null});
 	})
 
 };
@@ -117,10 +117,10 @@ exports.logup = function (req, res, next) {
 	UserProxy.createUser(name,address,phone,mail,password,function (err) {
 		if(!err){
 			//成功
-			res.json({err:null});
+			return res.json({err:null});
 		}
 		else{
-			res.json({err:err});
+			return res.json({err:err});
 		}
 	})
 
@@ -136,10 +136,10 @@ exports.deleteUser = function (req, res, next) {
 	UserProxy.deleteUser(req.body.name,function (err) {
 		if(!err){
 			//成功
-			res.json({err:null});
+			return res.json({err:null});
 		}
 		else{
-			res.json({err:err});
+			return res.json({err:err});
 		}
 	})
 };
@@ -160,10 +160,10 @@ exports.updateUser = function (req, res, next) {
 	UserProxy.updateUser(mail,phone,address,name,function (err) {
 		if(!err){
 			//成功
-			res.json({err:null});
+			return res.json({err:null});
 		}
 		else{
-			res.json({err:err});
+			return res.json({err:err});
 		}
 	})
 };
