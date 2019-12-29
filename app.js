@@ -8,9 +8,9 @@ var logger = require('morgan');
 const format = require('string-format');
 format.extend(String.prototype, {});
 
-//router require
-var indexRouter = require('./routes/index');
-var userRouter = require('./routes/user');
+// cors
+let cors = require('cors');
+
 
 // swagger require
 const swaggerUi = require('swagger-ui-express');
@@ -24,6 +24,9 @@ let configSession = require('./config/session');
 //express
 var app = express();
 
+
+//cors
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,8 +46,14 @@ app.use(session(configSession.options));
 
 // ---------- router begin -----------
 
+//router require
+let indexRouter = require('./routes/index');
+let userRouter = require('./routes/user');
+let bookRouter = require('./routes/book');
+
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/book', bookRouter);
 
 // serve swagger
 app.get('/swagger.json', function(req, res) {

@@ -10,7 +10,7 @@ exports.sql = function () {
 
 	/**
 	 * 新建订单
-	 * @param OrderID
+	 * @param orderID
 	 * @param ISBN
 	 * @param PerchaseNum
 	 * @param CustomerName
@@ -18,8 +18,8 @@ exports.sql = function () {
 	 * @param CustomerAddr
 	 * @returns {string}
 	 */
-	function insertOrder(OrderID, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr) {
-		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, GETDATE(), {1}, {2}, {3}, {4}, {5}, 0);".format(OrderID, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr);
+	function insertOrder(orderID, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr) {
+		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, GETDATE(), {1}, {2}, {3}, {4}, {5}, 0);".format(orderID, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr);
 	}
 
 	/**

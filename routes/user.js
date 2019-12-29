@@ -180,4 +180,5 @@ router.delete('/',UserController.deleteUser);
  *         description: ok
  */
 router.put('/',UserController.updateUser);
+
 module.exports = router;

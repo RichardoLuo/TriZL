@@ -5,7 +5,8 @@ let swaggerDefinition = {
 		version: '1.0.0',
 		description: 'book 接口文档',
 	},
-	host: 'localhost:3000',
+	// host: 'localhost:3000',
+	host: '10.203.197.66:3000',
 	basePath: '/',
 };
 

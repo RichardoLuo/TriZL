@@ -15,6 +15,20 @@ exports.build = function(name,address,phone,mail){
 	};
 };
 
+/**
+ * 将members tuple 转成 user
+ * @param membersTuple
+ * @returns {{address: *, mail: *, phone: *, name: *}}
+ */
+exports.change = function(membersTuple){
+	return {
+		name: membersTuple.MemberName,
+		address: membersTuple.Address,
+		phone: membersTuple.Phone,
+		mail: membersTuple.Mail,
+	}
+};
+
 exports.sql = function () {
 	/**
 	 * 根据用户名密码查询

@@ -33,7 +33,8 @@ exports.getUserByName = function (name,callback) {
 				if(rows.length === 0)
 					return callback("no this name");
 				else{
-					return callback(null,rows[0]);
+					let user = UserModel.change(rows[0]);
+					return callback(null,user);
 				}
 			});
 		}
