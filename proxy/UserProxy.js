@@ -5,18 +5,6 @@ let configDb = require('../config/db');
 //建立连接池
 let pool = mysql.createPool(configDb.mysql);
 
-// todo
-pool.getConnection((err,connection)=>{
-	if(err){
-		console.log(err);
-	}
-	else{
-		connection.query('select * from actor', function(err, rows, fields) {
-			if (err) throw err;
-
-		});
-	}
-});
 
 /**
  * 根据用户名查询用户
@@ -30,9 +18,23 @@ exports.getUserByName = function (name,callback) {
 	if (!name || name.length === 0) {
 		return callback("name is null or the length is 0", []);
 	}
-	//todo database
-	let user = UserModel.build(name,Math.random()*1000,Math.random()*1000);
-	callback(null,user);
+	
+	//database
+	pool.getConnection((err,connection)=>{
+		if(err){
+			return callback(err);
+		}
+		else{
+			connection.query(UserModel.sql().selectMember(name), function(err, rows, fields) {
+				if (err) throw err;
+				
+				//todo
+				return callback(null);
+			});
+		}
+	});
+	
+	
 };
 
 /**
@@ -51,8 +53,21 @@ exports.updatePassword = function (name,pwd,callback) {
 	if (!pwd || pwd.length === 0) {
 		return callback("pwd is null or the length is 0");
 	}
-	//todo database
-	callback(null)
+	//database
+	pool.getConnection((err,connection)=>{
+		if(err){
+			return callback(err);
+		}
+		else{
+			connection.query(UserModel.sql().changePassword(name,pwd), function(err, rows, fields) {
+				if (err) throw err;
+				
+				//todo
+				return callback(null);
+			});
+		}
+	});
+
 };
 
 /**
@@ -71,14 +86,20 @@ exports.checkPassword = function (name,pwd,callback) {
 	if (!pwd || pwd.length === 0) {
 		return callback("pwd is null or the length is 0");
 	}
-	//todo database
-	let flag = name === "zxc" && pwd === "zxc";
-	//如果正确
-	if(flag){
-		callback(null);
-	}
-	//如果不正确
-	else{
-		callback("name or password is wrong");
-	}
+	//database
+	pool.getConnection((err,connection)=>{
+		if(err){
+			return callback(err);
+		}
+		else{
+			connection.query(UserModel.sql().checkPassword(name,pwd), function(err, rows, fields) {
+				if (err) throw err;
+				
+				//todo
+				callback("name or password is wrong");
+				return callback(null);
+			});
+		}
+	});
+
 };
