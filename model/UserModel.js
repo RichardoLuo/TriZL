@@ -70,10 +70,13 @@ exports.sql = function () {
 	
 	/**
 	 * 根据新的用户信息 更新用户
-	 * @param user 
+	 * @param mail
+	 * @param phone
+	 * @param address
+	 * @param name
 	 */
-	function updateUser(user) {
-		return "UPDATE Members SET Mail={0}，Phone = {1}，Address = {2} WHERE MemberName = {3}".format(user.mail,user.phone,user.address,user.name);
+	function updateUser(mail,phone,address,name) {
+		return "UPDATE Members SET Mail={0}，Phone = {1}，Address = {2} WHERE MemberName = {3}".format(mail,phone,address,name);
 	}
 	
 	/**

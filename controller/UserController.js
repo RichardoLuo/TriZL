@@ -53,11 +53,10 @@ exports.login = function (req, res, next) {
 	let password = req.body.password;
 
 	if(req.session.name){
-		//两个至少有一个就行
 		res.json({err:name+"已经登录"});
 		return;
 	}
-	//会话到期，即两者全部失效
+
 	//登录
 	UserProxy.checkPassword(name,password,function (err) {
 		if(!err){
@@ -109,9 +108,64 @@ exports.logout = function (req, res, next) {
  */
 exports.logup = function (req, res, next) {
 	//todo
+	let body = req.body;
+	let name = body.name;
+	let address = body.address;
+	let phone = body.phone;
+	let mail = body.mail;
+	let password = body.password;
+	UserProxy.createUser(name,address,phone,mail,password,function (err) {
+		if(!err){
+			//成功
+			res.json({err:null});
+		}
+		else{
+			res.json({err:err});
+		}
+	})
+
+};
+
+/**
+ * 删除用户
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.deleteUser = function (req, res, next) {
+	UserProxy.deleteUser(req.body.name,function (err) {
+		if(!err){
+			//成功
+			res.json({err:null});
+		}
+		else{
+			res.json({err:err});
+		}
+	})
+};
+
+/**
+ * 更新用户信息
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.updateUser = function (req, res, next) {
+	let body = req.body;
+	let name = body.name;
+	let address = body.address;
+	let phone = body.phone;
+	let mail = body.mail;
 	
-	//成功
-	res.json({err:null})
+	UserProxy.updateUser(mail,phone,address,name,function (err) {
+		if(!err){
+			//成功
+			res.json({err:null});
+		}
+		else{
+			res.json({err:err});
+		}
+	})
 };
 
 

@@ -29,7 +29,10 @@ exports.getUserByName = function (name,callback) {
 				if (err) throw err;
 				
 				//todo
-				return callback(null);
+				if(rows.length === 0)
+					return callback("no this name");
+				else
+					return callback(null,rows[0]);
 			});
 		}
 	});
@@ -95,9 +98,10 @@ exports.checkPassword = function (name,pwd,callback) {
 			connection.query(UserModel.sql().checkPassword(name,pwd), function(err, rows, fields) {
 				if (err) throw err;
 				
-				//todo
-				callback("name or password is wrong");
-				return callback(null);
+				if(rows.length === 0)
+					callback("用户名或密码错误");
+				else
+					return callback(null);
 			});
 		}
 	});
@@ -106,11 +110,78 @@ exports.checkPassword = function (name,pwd,callback) {
 
 /**
  *
- * @param user
+ * @param name
+ * @param address
+ * @param phone
+ * @param mail
+ * @param password
+ * @param callback
+ * @returns {*}
+ */
+exports.createUser = function (name,address,phone,mail,password,callback) {
+	//database
+	pool.getConnection((err,connection)=>{
+		if(err){
+			return callback(err);
+		}
+		else{
+			connection.query(UserModel.sql().createUser(name,password,mail,phone,address), function(err, rows, fields) {
+				if (err) throw err;
+				
+				//todo
+				return callback(null);
+			});
+		}
+	});
+};
+
+/**
+ * 删除用户
+ * @param name 用户名
+ * @param callback
+ * @returns {*}
+ */
+exports.deleteUser = function (name,callback) {
+	if(!name){
+		return callback("name is null")
+	}
+	//database
+	pool.getConnection((err,connection)=>{
+		if(err){
+			return callback(err);
+		}
+		else{
+			connection.query(UserModel.sql().deleteUser(name), function(err, rows, fields) {
+				if (err) throw err;
+				
+				//todo
+				return callback(null);
+			});
+		}
+	});
+};
+
+/**
+ * 更新用户信息
+ * @param mail
+ * @param phone
+ * @param address
+ * @param name
  * @param callback
  */
-exports.createUser = function (user,callback) {
-	if(!user){
-		callback("user is null")
-	}
-}
+exports.updateUser = function (mail,phone,address,name,callback) {
+	//database
+	pool.getConnection((err,connection)=>{
+		if(err){
+			return callback(err);
+		}
+		else{
+			connection.query(UserModel.sql().updateUser(mail,phone,address,name), function(err, rows, fields) {
+				if (err) throw err;
+				
+				//todo
+				return callback(null);
+			});
+		}
+	});
+};
