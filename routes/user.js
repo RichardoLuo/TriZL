@@ -3,20 +3,6 @@ let router = express.Router();
 
 let UserController = require('../controller/UserController');
 
-/**
- * @swagger
- * definitions:
- *   User:
- *     properties:
- *       name:
- *         type: string
- *       address:
- *         type: string
- *       phone:
- *         type: string
- *       mail:
- *         type: string
- */
 
 /**
  * @swagger
@@ -36,8 +22,6 @@ let UserController = require('../controller/UserController');
  *     responses:
  *       200:
  *         description: ok
- *         schema:
- *           $ref: '#/definitions/User'
  */
 router.get('/:name',UserController.getUserByName);
 
@@ -132,6 +116,8 @@ router.delete('/session',UserController.logout);
  *               type: string
  *             phone:
  *               type: string
+ *             mail:
+ *               type: string
  *             password:
  *               type: string
  *     responses:
@@ -140,4 +126,58 @@ router.delete('/session',UserController.logout);
  */
 router.post('/',UserController.logup);
 
+/**
+ * @swagger
+ * /user:
+ *   delete:
+ *     tags:
+ *       - User
+ *     description: 删除用户
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         description:
+ *         in: body
+ *         required: true
+ *         schema:
+ *           properties:
+ *             name:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: ok
+ */
+router.delete('/',UserController.deleteUser);
+
+/**
+ * @swagger
+ * /user:
+ *   put:
+ *     tags:
+ *       - User
+ *     description: 更新用户信息
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         description:
+ *         in: body
+ *         required: true
+ *         schema:
+ *           properties:
+ *             name:
+ *               type: string
+ *             address:
+ *               type: string
+ *             phone:
+ *               type: string
+ *             mail:
+ *               type: string
+ *
+ *     responses:
+ *       200:
+ *         description: ok
+ */
+router.put('/',UserController.updateUser);
 module.exports = router;
