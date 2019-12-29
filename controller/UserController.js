@@ -13,7 +13,7 @@ exports.getUserByName = function (req, res, next) {
 	UserProxy.getUserByName(userName,function (err,user) {
 		if(!err){
 			//返回用户
-			return res.json({user,err:err});
+			return res.json({user:user,err:err});
 		}
 		else{
 			//失败
