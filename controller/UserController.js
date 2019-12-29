@@ -109,7 +109,7 @@ exports.logout = function (req, res, next) {
  */
 exports.logup = function (req, res, next) {
 	//todo
-
+	
 	//成功
 	res.json({err:null})
 };

@@ -103,3 +103,14 @@ exports.checkPassword = function (name,pwd,callback) {
 	});
 
 };
+
+/**
+ *
+ * @param user
+ * @param callback
+ */
+exports.createUser = function (user,callback) {
+	if(!user){
+		callback("user is null")
+	}
+}
