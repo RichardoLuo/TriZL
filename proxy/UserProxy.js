@@ -2,20 +2,10 @@ let UserModel = require('../model/UserModel');
 
 let mysql = require('mysql');
 let configDb = require('../config/db');
+//建立连接池
 let pool = mysql.createPool(configDb.mysql);
 
 // todo
-// pool.getConnection((err,connection)=>{
-// 	if(err){
-// 		console.log(err);
-// 	}
-// 	else{
-// 		connection.query('select * from book', function(err, rows, fields) {
-// 			if (err) throw err;
-// 			console.log(rows)
-// 		});
-// 	}
-// });
 pool.getConnection((err,connection)=>{
 	if(err){
 		console.log(err);
