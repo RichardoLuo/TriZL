@@ -34,7 +34,7 @@ exports.updatePassword = function (req, res, next) {
 	UserProxy.updatePassword(name,password,function (err) {
 		if(!err){
 			//修改成功
-			return res.json({err:err})
+			return res.json({err:null})
 		}
 		else{
 			return res.json({err:err})
@@ -68,7 +68,7 @@ exports.login = function (req, res, next) {
 				else{
 					req.session.name = name;
 					
-					return res.send("登录成功")
+					return res.json({err:null})
 				}
 			});
 			
@@ -88,16 +88,19 @@ exports.login = function (req, res, next) {
  */
 exports.logout = function (req, res, next) {
 	//todo
-	req.session.destroy(function (err) {
+	req.session.destroy(function (err){
 		if(err){
 			//失败
 			res.json({err:err});
 			return;
 		}
 		//成功
+		
+		//清空登录cookie
+		res.clearCookie("session");
 		return res.json({err:null});
 	})
-
+	
 };
 
 /**
