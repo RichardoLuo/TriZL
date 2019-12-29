@@ -14,10 +14,7 @@ var swaggerJSDoc = require('swagger-jsdoc');
 let configSwagger = require('./config/swagger');
 
 // session redis require
-const redis = require('redis');
 const session = require('express-session');
-let RedisStore = require('connect-redis')(session);
-let redisClient = redis.createClient();
 let configSession = require('./config/session');
 
 //express
@@ -38,17 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 var swaggerSpec = swaggerJSDoc(configSwagger.swaggerOptions);
 
 // session
-app.use(session({
-  name: 'session',                        // 这里是cookie的name，默认是connect.sid
-  secret: configSession.secret,           // 建议使用 128 个字符的随机字符串
-  resave: true,                           // 是否每次都重新保存会话，建议false
-  saveUninitialized: false,
-  store: new RedisStore({
-    client: redisClient,
-  }),
-}));
+app.use(session(configSession.options));
 
-// ---------- router -----------
+// ---------- router begin -----------
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
@@ -83,7 +72,7 @@ app.get('/favicon.ico', (req, res) => {
   res.sendFile("favicon.ico");
 });
 
-//---------- router -----------
+//---------- router end -----------
 
 
 

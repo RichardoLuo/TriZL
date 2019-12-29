@@ -52,9 +52,9 @@ exports.login = function (req, res, next) {
 	let name = req.body.name;
 	let password = req.body.password;
 
-	if(req.session.login || req.signedCookies.login){
+	if(req.session.name){
 		//两个至少有一个就行
-		res.send(req.session.login+"..."+req.signedCookies.login);
+		res.json({err:name+"已经登录"});
 		return;
 	}
 	//会话到期，即两者全部失效
@@ -67,10 +67,9 @@ exports.login = function (req, res, next) {
 					return res.json({err:err});
 				}
 				else{
-					req.session.login = true;
-					res.cookie('login', true, { maxAge: 60 * 1000 * 60, signed: true});
-					// res.json({err:null})
-					res.send("first")
+					req.session.name = name;
+					
+					res.send("登录成功")
 				}
 			});
 			
@@ -97,8 +96,6 @@ exports.logout = function (req, res, next) {
 			return;
 		}
 		//成功
-		res.clearCookie("session");
-		res.clearCookie("login");
 		res.json({err:null});
 	})
 
