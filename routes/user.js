@@ -14,6 +14,8 @@ let UserController = require('../controller/UserController');
  *         type: string
  *       phone:
  *         type: string
+ *       mail:
+ *         type: string
  */
 
 /**

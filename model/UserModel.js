@@ -3,13 +3,15 @@
  * @param name
  * @param address
  * @param phone
+ * @param mail
  * @returns {{address: string, phone: string, name: string}}
  */
-exports.build = function(name,address,phone){
+exports.build = function(name,address,phone,mail){
 	return {
 		name: name,
 		address: address,
 		phone: phone,
+		mail: mail,
 	};
 };
 
@@ -45,7 +47,7 @@ exports.sql = function () {
 	/**
 	 * 创建用户
 	 * @param name string
-	 * @param password string
+	 * @param password string 未加密的password
 	 * @param mail string
 	 * @param phone string
 	 * @param address string
@@ -57,10 +59,41 @@ exports.sql = function () {
 		return "INSERT INTO Members (MemberName, PassWD, Mail, Phone, Address) VALUES ({0}, {1}, {2}, {3}, {4})".format(name,pwd,mail,phone,address);
 	}
 	
+	/**
+	 * 根据用户名删除用户
+	 * @param name
+	 * @returns {string | ServerResponse | *}
+	 */
+	function deleteUser(name) {
+		return "DELETE FROM [Members] WHERE ([MemberName] = {0}".format(name);
+	}
+	
+	/**
+	 * 根据新的用户信息 更新用户
+	 * @param user 
+	 */
+	function updateUser(user) {
+		return "UPDATE Members SET Mail={0}，Phone = {1}，Address = {2} WHERE MemberName = {3}".format(user.mail,user.phone,user.address,user.name);
+	}
+	
+	/**
+	 *
+	 * @param name 用户名
+	 * @param password 新的密码，未加密
+	 * @returns {string}
+	 */
+	function changePassword(name,password) {
+		let md5 = require('md5');
+		let pwd = md5(password);
+		return "UPDATE Members SET PassWD={0} WHERE MemberName = {1}".format(pwd,name);
+	}
 	return {
 		selectMember: selectMember,
 		selectMembersAll: selectMembersAll,
 		checkPassword: checkPassword,
 		createUser: createUser,
+		deleteUser: deleteUser,
+		updateUser: updateUser,
+		changePassword: changePassword,
 	}
 };
