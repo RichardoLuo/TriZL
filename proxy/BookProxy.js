@@ -127,6 +127,15 @@ exports.selectBookAuthor = function (author,callback) {
 
 /**
  * 新增书信息
+ * @param ISBN
+ * @param name
+ * @param author
+ * @param releaseTime datetime
+ * @param price float
+ * @param repertory int
+ * @param introduction
+ * @param picture
+ * @param soleNum int
  * @param callback
  */
 exports.insertBook = function (ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum,callback) {
@@ -171,6 +180,15 @@ exports.deleteBook = function (isbn,callback) {
 /**
  * 按ISBN更新书的信息
  * @param callback
+ * @param ISBN
+ * @param name
+ * @param author
+ * @param releaseTime datetime
+ * @param price float
+ * @param repertory int
+ * @param introduction
+ * @param picture
+ * @param soleNum int
  */
 exports.updateBook = function (name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN,callback) {
 	//database

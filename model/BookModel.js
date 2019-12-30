@@ -89,7 +89,7 @@ exports.sql = function () {
 	 * @returns {string}
 	 */
 	function insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum) {
-		return "INSERT INTO Books (ISBN, Name, Author, ReleaseTime, Price, Repertory, Introduction, Picture, SoleNum, AddTime)  VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}',{8}, GETDATE())".format(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum);
+		return "INSERT INTO Books (ISBN, Name, Author, ReleaseTime, Price, Repertory, Introduction, Picture, SoleNum, AddTime)  VALUES('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}',{8}, NOW())".format(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum);
 	}
 
 	/**
@@ -114,8 +114,8 @@ exports.sql = function () {
 	 * @param ISBN
 	 * @returns {string}
 	 */
-	function updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,addTime,ISBN) {
-		return "UPDATE  Books SET Name = '{0}', Author = '{1}', ReleaseTime = {2}, Price={3},  Repertory={4}, Introduction='{5}', Picture='{6}', SoleNum={7} WHERE ISBN = '{8}'".format(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN);
+	function updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN) {
+		return "UPDATE  Books SET Name = '{0}', Author = '{1}', ReleaseTime = '{2}', Price={3},  Repertory={4}, Introduction='{5}', Picture='{6}', SoleNum={7} WHERE ISBN = '{8}'".format(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN);
 	}
 
 	return{

@@ -1,9 +1,9 @@
 /**
  * 构造order 对象
- * @param orderID
+ * @param orderID int
  * @param orderTime
  * @param ISBN
- * @param perchaseNum
+ * @param perchaseNum int
  * @param customerName
  * @param customerPhone
  * @param customerAddr
@@ -62,7 +62,7 @@ exports.sql = function () {
 	 * @returns {string}
 	 */
 	function insertOrder(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr) {
-		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, GETDATE(), {1}, {2}, {3}, {4}, {5}, 0);".format(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr);
+		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, NOW(), {1}, {2}, {3}, {4}, {5}, 0);".format(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr);
 	}
 
 	/**
