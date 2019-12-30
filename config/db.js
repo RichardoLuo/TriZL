@@ -1,6 +1,7 @@
+let configIp = require('./ip');
 module.exports = {
 	mysql: {
-		host: '10.243.56.142',
+		host: configIp.ip.database,
 		user: 'root',
 		password: '',
 		database: 'bookstore',
