@@ -1,3 +1,46 @@
+/**
+ * 构造order 对象
+ * @param orderID
+ * @param orderTime
+ * @param ISBN
+ * @param perchaseNum
+ * @param customerName
+ * @param customerPhone
+ * @param customerAddr
+ * @param orderStatus
+ * @returns {{perchaseNum: *, customerPhone: *, orderTime: *, ISBN: *, orderID: *, orderStatus: *, customerName: *, customerAddr: *}}
+ */
+exports.build = function(orderID, orderTime, ISBN, perchaseNum, customerName, customerPhone, customerAddr,orderStatus){
+	return{
+		orderID: orderID,
+		orderTime: orderTime,
+		ISBN: ISBN,
+		perchaseNum: perchaseNum,
+		customerName: customerName,
+		customerPhone: customerPhone,
+		customerAddr: customerAddr,
+		orderStatus: orderStatus,
+	}
+};
+
+/**
+ * 转换
+ * @param orderTuple
+ * @returns {{perchaseNum: *, customerPhone: *, orderTime: *, ISBN: *, orderID: *, orderStatus: *, customerName: *, customerAddr: *}}
+ */
+exports.change = function(orderTuple){
+	return{
+		orderID: orderTuple.OrderID,
+		orderTime: orderTuple.OrderTime,
+		ISBN: orderTuple.ISBN,
+		perchaseNum: orderTuple.PerchaseNum,
+		customerName: orderTuple.CustomerName,
+		customerPhone: orderTuple.CustomerPhone,
+		customerAddr: orderTuple.CustomerAddr,
+		orderStatus: orderTuple.OrderStatus,
+	}
+};
+
 exports.sql = function () {
 	/**
 	 * 按订单号查询订单所有信息
