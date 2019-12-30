@@ -49,7 +49,7 @@ exports.sql = function () {
 	}
 
 	/**
-	 * 按ISBN查询书所有信息
+	 * 按ISBN查询书所有信息 非模糊查询 必须完全一样
 	 * @param ISBN
 	 * @returns {string}
 	 */
@@ -58,12 +58,12 @@ exports.sql = function () {
 	}
 
 	/**
-	 * 按书名查询书所有信息
+	 * 按书名查询书所有信息 模糊查询
 	 * @param name
 	 * @returns {string}
 	 */
 	function selectBookName(name) {
-		return "SELECT * FROM Books WHERE ( Name LIKE ‘%{0}%’ )".format(name);
+		return "SELECT * FROM Books WHERE ( Name LIKE '%{0}%' )".format(name);
 	}
 
 	/**
@@ -72,7 +72,7 @@ exports.sql = function () {
 	 * @returns {string}
 	 */
 	function selectBookAuthor(author) {
-		return "SELECT * FROM Books WHERE ( Author LIKE ‘%{0}%’ )".format(author);
+		return "SELECT * FROM Books WHERE ( Author LIKE '%{0}%' )".format(author);
 	}
 
 	/**
