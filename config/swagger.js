@@ -7,7 +7,7 @@ let swaggerDefinition = {
 		description: 'book 接口文档',
 	},
 	host: configIp.ip.server + ":3000",
-	// host: '10.203.197.66:3000',
+
 	basePath: '/',
 };
 
