@@ -3,12 +3,12 @@
  * @param ISBN
  * @param name
  * @param author
- * @param releaseTime
- * @param price
- * @param repertory
+ * @param releaseTime datetime
+ * @param price float
+ * @param repertory int
  * @param introduction
  * @param picture
- * @param soleNum
+ * @param soleNum int
  * @returns {{releaseTime: *, ISBN: *, author: *, price: *, soleNum: *, name: *, repertory: *, introduction: *, picture: *}}
  */
 exports.build = function(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum){
@@ -80,12 +80,12 @@ exports.sql = function () {
 	 * @param ISBN
 	 * @param name
 	 * @param author
-	 * @param releaseTime
-	 * @param price
-	 * @param repertory
+	 * @param releaseTime datetime
+	 * @param price float
+	 * @param repertory int
 	 * @param introduction
 	 * @param picture
-	 * @param soleNum
+	 * @param soleNum int
 	 * @returns {string}
 	 */
 	function insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum) {
@@ -105,12 +105,12 @@ exports.sql = function () {
 	 * 按ISBN更新书的信息
 	 * @param name
 	 * @param author
-	 * @param releaseTime
-	 * @param price
-	 * @param repertory
+	 * @param releaseTime datetime
+	 * @param price float
+	 * @param repertory int
 	 * @param introduction
 	 * @param picture
-	 * @param soleNum
+	 * @param soleNum int
 	 * @param ISBN
 	 * @returns {string}
 	 */
