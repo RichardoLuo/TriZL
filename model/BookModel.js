@@ -3,12 +3,12 @@
  * @param ISBN
  * @param name
  * @param author
- * @param releaseTime
- * @param price
- * @param repertory
+ * @param releaseTime datetime
+ * @param price float
+ * @param repertory int
  * @param introduction
  * @param picture
- * @param soleNum
+ * @param soleNum int
  * @returns {{releaseTime: *, ISBN: *, author: *, price: *, soleNum: *, name: *, repertory: *, introduction: *, picture: *}}
  */
 exports.build = function(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum){
@@ -49,7 +49,7 @@ exports.sql = function () {
 	}
 
 	/**
-	 * 按ISBN查询书所有信息
+	 * 按ISBN查询书所有信息 非模糊查询 必须完全一样
 	 * @param ISBN
 	 * @returns {string}
 	 */
@@ -58,12 +58,12 @@ exports.sql = function () {
 	}
 
 	/**
-	 * 按书名查询书所有信息
+	 * 按书名查询书所有信息 模糊查询
 	 * @param name
 	 * @returns {string}
 	 */
 	function selectBookName(name) {
-		return "SELECT * FROM Books WHERE ( Name LIKE ‘%{0}%’ )".format(name);
+		return "SELECT * FROM Books WHERE ( Name LIKE '%{0}%' )".format(name);
 	}
 
 	/**
@@ -72,7 +72,7 @@ exports.sql = function () {
 	 * @returns {string}
 	 */
 	function selectBookAuthor(author) {
-		return "SELECT * FROM Books WHERE ( Author LIKE ‘%{0}%’ )".format(author);
+		return "SELECT * FROM Books WHERE ( Author LIKE '%{0}%' )".format(author);
 	}
 
 	/**
@@ -80,12 +80,12 @@ exports.sql = function () {
 	 * @param ISBN
 	 * @param name
 	 * @param author
-	 * @param releaseTime
-	 * @param price
-	 * @param repertory
+	 * @param releaseTime datetime
+	 * @param price float
+	 * @param repertory int
 	 * @param introduction
 	 * @param picture
-	 * @param soleNum
+	 * @param soleNum int
 	 * @returns {string}
 	 */
 	function insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum) {
@@ -105,12 +105,12 @@ exports.sql = function () {
 	 * 按ISBN更新书的信息
 	 * @param name
 	 * @param author
-	 * @param releaseTime
-	 * @param price
-	 * @param repertory
+	 * @param releaseTime datetime
+	 * @param price float
+	 * @param repertory int
 	 * @param introduction
 	 * @param picture
-	 * @param soleNum
+	 * @param soleNum int
 	 * @param ISBN
 	 * @returns {string}
 	 */

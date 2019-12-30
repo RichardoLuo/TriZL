@@ -53,9 +53,9 @@ exports.sql = function () {
 
 	/**
 	 * 新建订单
-	 * @param orderID
+	 * @param orderID int
 	 * @param ISBN
-	 * @param perchaseNum
+	 * @param perchaseNum int
 	 * @param customerName
 	 * @param customerPhone
 	 * @param customerAddr
@@ -67,7 +67,7 @@ exports.sql = function () {
 
 	/**
 	 * 按订单号删除订单
-	 * @param id
+	 * @param id int
 	 * @returns {string}
 	 */
 	function deleteOrder(id) {
@@ -76,8 +76,8 @@ exports.sql = function () {
 
 	/**
 	 * 更新订单运输状态
-	 * @param state
-	 * @param id
+	 * @param state enum
+	 * @param id int
 	 * @returns {string}
 	 */
 	function updateOrder(state,id) {
