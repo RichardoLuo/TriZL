@@ -26,6 +26,7 @@ exports.getUserByName = function (name,callback) {
 		}
 		else{
 			connection.query(UserModel.sql().selectMember(name), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -66,6 +67,7 @@ exports.updatePassword = function (name,pwd,callback) {
 		}
 		else{
 			connection.query(UserModel.sql().changePassword(name,pwd), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -100,6 +102,7 @@ exports.checkPassword = function (name,pwd,callback) {
 		}
 		else{
 			connection.query(UserModel.sql().checkPassword(name,pwd), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -131,6 +134,7 @@ exports.createUser = function (name,address,phone,mail,password,callback) {
 		}
 		else{
 			connection.query(UserModel.sql().createUser(name,password,mail,phone,address), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -158,6 +162,7 @@ exports.deleteUser = function (name,callback) {
 		}
 		else{
 			connection.query(UserModel.sql().deleteUser(name), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -183,6 +188,7 @@ exports.updateUser = function (mail,phone,address,name,callback) {
 		}
 		else{
 			connection.query(UserModel.sql().updateUser(mail,phone,address,name), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				

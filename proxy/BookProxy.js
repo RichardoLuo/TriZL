@@ -18,6 +18,7 @@ exports.selectBookAll = function (callback) {
 		}
 		else{
 			connection.query(BookModel.sql().selectBookAll(), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -48,6 +49,7 @@ exports.selectBookISBN = function (ISBN,callback) {
 		}
 		else{
 			connection.query(BookModel.sql().selectBookISBN(ISBN), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -78,6 +80,7 @@ exports.selectBookName = function (name,callback) {
 		}
 		else{
 			connection.query(BookModel.sql().selectBookName(name), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -108,6 +111,7 @@ exports.selectBookAuthor = function (author,callback) {
 		}
 		else{
 			connection.query(BookModel.sql().selectBookAuthor(author), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -146,6 +150,7 @@ exports.insertBook = function (ISBN,name,author,releaseTime,price,repertory,intr
 		}
 		else{
 			connection.query(BookModel.sql().insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -168,6 +173,7 @@ exports.deleteBook = function (isbn,callback) {
 		}
 		else{
 			connection.query(BookModel.sql().deleteBook(isbn), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				
@@ -198,6 +204,7 @@ exports.updateBook = function (name,author,releaseTime,price,repertory,introduct
 		}
 		else{
 			connection.query(BookModel.sql().updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN), function(err, rows, fields) {
+				connection.release();
 				if (err)
 					return callback(err);
 				

@@ -19,6 +19,9 @@ let selectFilter = function(req,res,next){
 		BookController.selectBookName(req,res,next);
 	}else if (method === "author"){
 		BookController.selectBookAuthor(req,res,next);
+	}else{
+		//bug fix no answer
+		res.json({err:"no this method"});
 	}
 };
 /**

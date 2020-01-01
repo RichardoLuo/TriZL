@@ -18,6 +18,7 @@ exports.selectOrder = function (id,callback) {
         }
         else{
             connection.query(OrderModel.sql().selectOrder(id), function(err, rows, fields) {
+                connection.release();
                 if (err)
                     return callback(err);
 
@@ -53,6 +54,7 @@ exports.insertOrder = function (orderID, ISBN, perchaseNum, customerName, custom
         }
         else{
             connection.query(OrderModel.sql().insertOrder(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr), function(err, rows, fields) {
+                connection.release();
                 if (err)
                     return callback(err);
 
@@ -78,6 +80,7 @@ exports.deleteOrder = function (id, callback) {
         }
         else{
             connection.query(OrderModel.sql().deleteOrder(id), function(err, rows, fields) {
+                connection.release();
                 if (err)
                     return callback(err);
 
@@ -103,6 +106,7 @@ exports.updateOrder = function (state,id, callback) {
         }
         else{
             connection.query(OrderModel.sql().updateOrder(state,id), function(err, rows, fields) {
+                connection.release();
                 if (err)
                     return callback(err);
 
