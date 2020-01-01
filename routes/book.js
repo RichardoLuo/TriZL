@@ -13,14 +13,14 @@ let selectFilter = function(req,res,next){
 	let method = req.params.method;
 	if(method === "all"){
 		BookController.selectBookAll(req,res,next);
-	}else if (method === "ISBN"){
+	}else if (method === "isbn"){
 		BookController.selectBookISBN(req,res,next);
 	}else if (method === "name"){
 		BookController.selectBookName(req,res,next);
 	}else if (method === "author"){
 		BookController.selectBookAuthor(req,res,next);
 	}else{
-		//bug fix no answer
+		//bug fix: server no res
 		res.json({err:"no this method"});
 	}
 };
@@ -35,7 +35,7 @@ let selectFilter = function(req,res,next){
  *       - application/json
  *     parameters:
  *       - name: method
- *         description: method can be all, ISBN, name, author, 对应不同的查找方式
+ *         description: method can be all, isbn, name, author, 对应不同的查找方式
  *         in: path
  *         required: true
  *       - name: id
@@ -66,7 +66,7 @@ router.get('/:method',selectFilter);
  *         required: true
  *         schema:
  *           properties:
- *             ISBN:
+ *             isbn:
  *               type: string
  *             name:
  *               type: string
@@ -97,7 +97,7 @@ router.post('/',BookController.insertBook);
  *   delete:
  *     tags:
  *       - Book
- *     description: 按ISBN删除书信息
+ *     description: 按isbn删除书信息
  *     produces:
  *       - application/json
  *     parameters:
@@ -107,7 +107,7 @@ router.post('/',BookController.insertBook);
  *         required: true
  *         schema:
  *           properties:
- *             ISBN:
+ *             isbn:
  *               type: string
  *
  *     responses:
@@ -123,7 +123,7 @@ router.delete('/',BookController.deleteBook);
  *   put:
  *     tags:
  *       - Book
- *     description: 按ISBN更新书的信息
+ *     description: 按isbn更新书的信息
  *     produces:
  *       - application/json
  *     parameters:
@@ -133,7 +133,7 @@ router.delete('/',BookController.deleteBook);
  *         required: true
  *         schema:
  *           properties:
- *             ISBN:
+ *             isbn:
  *               type: string
  *             name:
  *               type: string

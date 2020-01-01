@@ -39,21 +39,21 @@ exports.selectOrder = function (id,callback) {
 /**
  * 新建订单
  * @param orderID
- * @param ISBN
+ * @param isbn
  * @param perchaseNum
  * @param customerName
  * @param customerPhone
  * @param customerAddr
  * @param callback
  */
-exports.insertOrder = function (orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr,callback) {
+exports.insertOrder = function (orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr,callback) {
     //database
     pool.getConnection((err,connection)=>{
         if(err){
             return callback(err);
         }
         else{
-            connection.query(OrderModel.sql().insertOrder(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr), function(err, rows, fields) {
+            connection.query(OrderModel.sql().insertOrder(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr), function(err, rows, fields) {
                 connection.release();
                 if (err)
                     return callback(err);

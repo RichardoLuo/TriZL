@@ -37,18 +37,18 @@ exports.selectBookAll = function (callback) {
 };
 
 /**
- * 按ISBN查询书所有信息
- * @param ISBN
+ * isbn
+ * @param isbn
  * @param callback
  */
-exports.selectBookISBN = function (ISBN,callback) {
+exports.selectBookISBN = function (isbn,callback) {
 	//database
 	pool.getConnection((err,connection)=>{
 		if(err){
 			return callback(err);
 		}
 		else{
-			connection.query(BookModel.sql().selectBookISBN(ISBN), function(err, rows, fields) {
+			connection.query(BookModel.sql().selectBookISBN(isbn), function(err, rows, fields) {
 				connection.release();
 				if (err)
 					return callback(err);
@@ -131,7 +131,7 @@ exports.selectBookAuthor = function (author,callback) {
 
 /**
  * 新增书信息
- * @param ISBN
+ * @param isbn
  * @param name
  * @param author
  * @param releaseTime datetime
@@ -142,14 +142,14 @@ exports.selectBookAuthor = function (author,callback) {
  * @param soleNum int
  * @param callback
  */
-exports.insertBook = function (ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum,callback) {
+exports.insertBook = function (isbn,name,author,releaseTime,price,repertory,introduction,picture,soleNum,callback) {
 	//database
 	pool.getConnection((err,connection)=>{
 		if(err){
 			return callback(err);
 		}
 		else{
-			connection.query(BookModel.sql().insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum), function(err, rows, fields) {
+			connection.query(BookModel.sql().insertBook(isbn,name,author,releaseTime,price,repertory,introduction,picture,soleNum), function(err, rows, fields) {
 				connection.release();
 				if (err)
 					return callback(err);
@@ -161,7 +161,7 @@ exports.insertBook = function (ISBN,name,author,releaseTime,price,repertory,intr
 };
 
 /**
- * 按ISBN删除书信息
+ * 按isbn删除书信息
  * @param isbn
  * @param callback
  */
@@ -184,9 +184,9 @@ exports.deleteBook = function (isbn,callback) {
 };
 
 /**
- * 按ISBN更新书的信息
+ * 按isbn更新书的信息
  * @param callback
- * @param ISBN
+ * @param isbn
  * @param name
  * @param author
  * @param releaseTime datetime
@@ -196,14 +196,14 @@ exports.deleteBook = function (isbn,callback) {
  * @param picture
  * @param soleNum int
  */
-exports.updateBook = function (name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN,callback) {
+exports.updateBook = function (name,author,releaseTime,price,repertory,introduction,picture,soleNum,isbn,callback) {
 	//database
 	pool.getConnection((err,connection)=>{
 		if(err){
 			return callback(err);
 		}
 		else{
-			connection.query(BookModel.sql().updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN), function(err, rows, fields) {
+			connection.query(BookModel.sql().updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,isbn), function(err, rows, fields) {
 				connection.release();
 				if (err)
 					return callback(err);

@@ -2,19 +2,19 @@
  * 构造order 对象
  * @param orderID int
  * @param orderTime
- * @param ISBN
+ * @param isbn
  * @param perchaseNum int
  * @param customerName
  * @param customerPhone
  * @param customerAddr
  * @param orderStatus
- * @returns {{perchaseNum: *, customerPhone: *, orderTime: *, ISBN: *, orderID: *, orderStatus: *, customerName: *, customerAddr: *}}
+ * @returns {{perchaseNum: *, customerPhone: *, orderTime: *, isbn: *, orderID: *, orderStatus: *, customerName: *, customerAddr: *}}
  */
-exports.build = function(orderID, orderTime, ISBN, perchaseNum, customerName, customerPhone, customerAddr,orderStatus){
+exports.build = function(orderID, orderTime, isbn, perchaseNum, customerName, customerPhone, customerAddr,orderStatus){
 	return{
 		orderID: orderID,
 		orderTime: orderTime,
-		ISBN: ISBN,
+		isbn: isbn,
 		perchaseNum: perchaseNum,
 		customerName: customerName,
 		customerPhone: customerPhone,
@@ -26,13 +26,13 @@ exports.build = function(orderID, orderTime, ISBN, perchaseNum, customerName, cu
 /**
  * 转换
  * @param orderTuple
- * @returns {{perchaseNum: *, customerPhone: *, orderTime: *, ISBN: *, orderID: *, orderStatus: *, customerName: *, customerAddr: *}}
+ * @returns {{perchaseNum: *, customerPhone: *, orderTime: *, isbn: *, orderID: *, orderStatus: *, customerName: *, customerAddr: *}}
  */
 exports.change = function(orderTuple){
 	return{
 		orderID: orderTuple.OrderID,
 		orderTime: orderTuple.OrderTime,
-		ISBN: orderTuple.ISBN,
+		isbn: orderTuple.ISBN,
 		perchaseNum: orderTuple.PerchaseNum,
 		customerName: orderTuple.CustomerName,
 		customerPhone: orderTuple.CustomerPhone,
@@ -54,15 +54,15 @@ exports.sql = function () {
 	/**
 	 * 新建订单
 	 * @param orderID int
-	 * @param ISBN
+	 * @param isbn
 	 * @param perchaseNum int
 	 * @param customerName
 	 * @param customerPhone
 	 * @param customerAddr
 	 * @returns {string}
 	 */
-	function insertOrder(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr) {
-		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, NOW(), {1}, {2}, {3}, {4}, {5}, 0);".format(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr);
+	function insertOrder(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr) {
+		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, NOW(), {1}, {2}, {3}, {4}, {5}, 0);".format(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr);
 	}
 
 	/**

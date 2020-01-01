@@ -19,7 +19,7 @@ exports.selectBookAll = function (req, res, next) {
 };
 
 /**
- * 按ISBN查询书所有信息
+ * 按isbn查询书所有信息
  * @param req
  * @param res
  * @param next
@@ -83,7 +83,7 @@ exports.selectBookAuthor = function (req, res, next) {
  * @param next
  */
 exports.insertBook = function (req, res, next) {
-	let ISBN = req.body.ISBN;
+	let isbn = req.body.isbn;
 	let name = req.body.name;
 	let author = req.body.author;
 	let releaseTime = req.body.releaseTime;
@@ -92,7 +92,7 @@ exports.insertBook = function (req, res, next) {
 	let introduction = req.body.introduction;
 	let picture = req.body.picture;
 	let soleNum = req.body.soleNum;
-	BookProxy.insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum,function (err) {
+	BookProxy.insertBook(isbn,name,author,releaseTime,price,repertory,introduction,picture,soleNum,function (err) {
 		if(err){
 			return res.json({err:err});
 		}
@@ -103,13 +103,13 @@ exports.insertBook = function (req, res, next) {
 };
 
 /**
- * 按ISBN删除书信息
+ * 按isbn删除书信息
  * @param req
  * @param res
  * @param next
  */
 exports.deleteBook = function (req, res, next) {
-	let isbn = req.body.ISBN;
+	let isbn = req.body.isbn;
 	BookProxy.deleteBook(isbn,function (err) {
 		if(err){
 			return res.json({err:err});
@@ -121,13 +121,13 @@ exports.deleteBook = function (req, res, next) {
 };
 
 /**
- * 按ISBN更新书的信息
+ * 按isbn更新书的信息
  * @param req
  * @param res
  * @param next
  */
 exports.updateBook = function (req, res, next) {
-	let ISBN = req.body.ISBN;
+	let isbn = req.body.isbn;
 	let name = req.body.name;
 	let author = req.body.author;
 	let releaseTime = req.body.releaseTime;
@@ -136,7 +136,7 @@ exports.updateBook = function (req, res, next) {
 	let introduction = req.body.introduction;
 	let picture = req.body.picture;
 	let soleNum = req.body.soleNum;
-	BookProxy.updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN,function (err) {
+	BookProxy.updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,isbn,function (err) {
 		if(err){
 			return res.json({err:err});
 		}

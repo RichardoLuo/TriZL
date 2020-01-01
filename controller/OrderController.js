@@ -14,12 +14,12 @@ exports.selectOrder = function (req, res, next) {
 
 exports.insertOrder = function (req, res, next) {
     let orderID = req.body.orderID;
-    let ISBN = req.body.ISBN;
+    let isbn = req.body.isbn;
     let perchaseNum = req.body.perchaseNum;
     let customerName = req.body.customerName;
     let customerPhone = req.body.customerPhone;
     let customerAddr = req.body.customerAddr;
-    OrderProxy.insertOrder(orderID, ISBN, perchaseNum, customerName, customerPhone, customerAddr,function (err,orderList) {
+    OrderProxy.insertOrder(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr,function (err,orderList) {
         if(err){
             return res.json({err:err});
         }

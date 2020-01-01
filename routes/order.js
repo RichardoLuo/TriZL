@@ -42,7 +42,7 @@ router.get('/',OrderController.selectOrder);
  *           properties:
  *             orderID:
  *               type: string
- *             ISBN:
+ *             isbn:
  *               type: string
  *             perchaseNum:
  *               type: string

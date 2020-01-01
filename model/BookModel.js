@@ -1,6 +1,6 @@
 /**
  * 创建一个book对象
- * @param ISBN
+ * @param isbn
  * @param name
  * @param author
  * @param releaseTime datetime
@@ -11,9 +11,9 @@
  * @param soleNum int
  * @returns {{releaseTime: *, ISBN: *, author: *, price: *, soleNum: *, name: *, repertory: *, introduction: *, picture: *}}
  */
-exports.build = function(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum){
+exports.build = function(isbn,name,author,releaseTime,price,repertory,introduction,picture,soleNum){
 	return {
-		ISBN: ISBN,
+		isbn: isbn,
 		name: name,
 		author: author,
 		releaseTime: releaseTime,
@@ -27,7 +27,7 @@ exports.build = function(ISBN,name,author,releaseTime,price,repertory,introducti
 
 exports.change = function(bookTuple){
 	return{
-		ISBN: bookTuple.ISBN,
+		isbn: bookTuple.ISBN,
 		name: bookTuple.Name,
 		author: bookTuple.Author,
 		releaseTime: bookTuple.ReleaseTime,
@@ -49,12 +49,12 @@ exports.sql = function () {
 	}
 
 	/**
-	 * 按ISBN查询书所有信息 非模糊查询 必须完全一样
-	 * @param ISBN
+	 * 按isbn查询书所有信息 非模糊查询 必须完全一样
+	 * @param isbn
 	 * @returns {string}
 	 */
-	function selectBookISBN(ISBN) {
-		return "SELECT * FROM Books WHERE ( ISBN = '{0}' )".format(ISBN);
+	function selectBookISBN(isbn) {
+		return "SELECT * FROM Books WHERE ( ISBN = '{0}' )".format(isbn);
 	}
 
 	/**
@@ -77,7 +77,7 @@ exports.sql = function () {
 
 	/**
 	 * 新增书信息
-	 * @param ISBN
+	 * @param isbn
 	 * @param name
 	 * @param author
 	 * @param releaseTime datetime
@@ -88,12 +88,12 @@ exports.sql = function () {
 	 * @param soleNum int
 	 * @returns {string}
 	 */
-	function insertBook(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum) {
-		return "INSERT INTO Books (ISBN, Name, Author, ReleaseTime, Price, Repertory, Introduction, Picture, SoleNum, AddTime)  VALUES('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}',{8}, NOW())".format(ISBN,name,author,releaseTime,price,repertory,introduction,picture,soleNum);
+	function insertBook(isbn,name,author,releaseTime,price,repertory,introduction,picture,soleNum) {
+		return "INSERT INTO Books (ISBN, Name, Author, ReleaseTime, Price, Repertory, Introduction, Picture, SoleNum, AddTime)  VALUES('{0}','{1}','{2}','{3}',{4},{5},'{6}','{7}',{8}, NOW())".format(isbn,name,author,releaseTime,price,repertory,introduction,picture,soleNum);
 	}
 
 	/**
-	 * 按ISBN删除书信息
+	 * 按isbn删除书信息
 	 * @param isbn
 	 * @returns {string}
 	 */
@@ -102,7 +102,7 @@ exports.sql = function () {
 	}
 
 	/**
-	 * 按ISBN更新书的信息
+	 * 按isbn更新书的信息
 	 * @param name
 	 * @param author
 	 * @param releaseTime datetime
@@ -111,11 +111,11 @@ exports.sql = function () {
 	 * @param introduction
 	 * @param picture
 	 * @param soleNum int
-	 * @param ISBN
+	 * @param isbn
 	 * @returns {string}
 	 */
-	function updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN) {
-		return "UPDATE  Books SET Name = '{0}', Author = '{1}', ReleaseTime = '{2}', Price={3},  Repertory={4}, Introduction='{5}', Picture='{6}', SoleNum={7} WHERE ISBN = '{8}'".format(name,author,releaseTime,price,repertory,introduction,picture,soleNum,ISBN);
+	function updateBook(name,author,releaseTime,price,repertory,introduction,picture,soleNum,isbn) {
+		return "UPDATE  Books SET Name = '{0}', Author = '{1}', ReleaseTime = '{2}', Price={3},  Repertory={4}, Introduction='{5}', Picture='{6}', SoleNum={7} WHERE ISBN = '{8}'".format(name,author,releaseTime,price,repertory,introduction,picture,soleNum,isbn);
 	}
 
 	return{
