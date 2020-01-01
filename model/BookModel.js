@@ -127,4 +127,4 @@ exports.sql = function () {
 		deleteBook: deleteBook,
 		updateBook: updateBook
 	}
-}
+};
