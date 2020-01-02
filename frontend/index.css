@@ -1,0 +1,792 @@
+       html {
+           background-color: #fdfcf8;
+           width: 100%;
+           height: 100%;
+           font-family: 'Microsoft Yahei', "微软雅黑", "宋体", Arial, Helvetica, sans-serif, serif;
+           background-image: url(./images/background.jpg);
+            background-color: #66745c; 
+            background-repeat: repeat;
+       }
+
+       .clear {
+           clear: both;
+       }
+
+       body {
+           /* background-image: url(./images/background.jpg); */
+           /* background-color: #66745c; */
+           /* background-repeat: repeat; */
+           margin: 0;
+           font-family: PingFangSC-Regular, Verdana, Arial, '微软雅黑', '宋体';
+           font-size: 14px;
+           /* min-width: 100%; */
+           width: 100%;
+           /* height: 100%; */
+           overflow: auto;
+           position: relative;
+       }
+
+       .header {
+           margin: 0;
+           border: 0;
+           background-color: #25331e;
+       }
+
+       a {
+           cursor: pointer;
+           color: white;
+       }
+
+       a:link, a:visited {
+           color: white;
+       }
+
+       .top-nav {
+           /* display: block; */
+           background-color: rgba(0, 0, 0, 0.5);
+           overflow: hidden;
+       }
+
+       .logo-wrap {
+           padding: 10px 32px 30px;
+       }
+
+       .section {
+           width: 1100px;
+           margin: 0 auto;
+           position: relative;
+       }
+
+       .nav-show {
+           float: left;
+       }
+
+       .nav-link {
+           float: right;
+       }
+
+       .nav-link a {
+           display: inline-block;
+           padding: 0 11px;
+           font-size: 12px;
+           line-height: 20px;
+           color: #fff;
+           vertical-align: middle;
+           text-shadow: 1px 1px 2px #6f9681;
+       }
+
+       a, a:hover, a:focus {
+           text-decoration: none;
+           outline: none;
+       }
+
+       .nav-main {
+           overflow: hidden;
+           background-color: #405133;
+       }
+
+       .nav {
+           float: left;
+           margin: 0;
+           padding-top: 6px;
+           padding-bottom: 6px;
+       }
+
+       .nav a {
+           width: 10px;
+       }
+
+       .nav a:link, a:visited {
+           font-weight: bold;
+           color: #FFFFFF;
+           background-color: transparent;
+           padding: 30px;
+           line-height: 32px;
+           font-size: 16px;
+           text-decoration: none;
+           text-transform: uppercase;
+       }
+
+       .nav a:hover, a:active {
+           background-color: #7A991A;
+       }
+
+       .search {
+           float: right;
+           position: relative;
+           width: 154px;
+           padding: 15px 15px 13px;
+       }
+
+       .search input[type='text'] {
+           width: 70%;
+           height: 25px;
+           border: none;
+           font-size: 14px;
+           color: #fff;
+           line-height: 24px;
+           padding: 0;
+           background-color: transparent;
+           border-bottom: 1px solid #66745c;
+           outline: none;
+       }
+
+       .welcome {
+           background-color: rgba(0, 0, 0, 0.5);
+           text-align: center;
+       }
+
+       .welcome h1 {
+           font-size: 60px;
+           font-family: Arial, Helvetica, sans-serif;
+           color: #FCFDEF;
+       }
+
+       .welcome p {
+           font-size: 30px;
+           font-family: Arial, Helvetica, sans-serif;
+           color: #6f9681;
+       }
+
+       .welcome h1 {
+           font-size: 30;
+           font-family: Arial, Helvetica, sans-serif;
+           color: #FCFDEF;
+       }
+
+       .login {
+           width: 400px;
+           margin: 0 auto;
+           margin-top: 20px;
+           position: relative;
+       }
+
+       .login-wrap {
+           background-color: rgba(0, 0, 0, 0.5);
+           text-align: center;
+       }
+
+       .login-wrap p {
+           position: relative;
+           margin: 10px;
+       }
+
+       .login-d {
+           width: 86%;
+           position: relative;
+           margin-bottom: 40px;
+           margin-top: 40px;
+           margin-right: auto;
+           margin-left: auto;
+           overflow: hidden;
+       }
+
+       .login-d img {
+           float: left;
+       }
+
+       .login-d input {
+           float: right;
+           width: 300px;
+           height: 25px;
+       }
+
+       .login-wrap a button {
+           width: 100%;
+           height: 45px;
+           background-color: #66745c;
+           border: none;
+           color: white;
+           font-size: 18px;
+       }
+
+       button {
+           border-radius: 6px;
+       }
+
+       .login-button {
+           width: 330px;
+           margin-left: auto;
+           margin-right: auto;
+           padding-bottom: 10px;
+       }
+
+       .login-button button {
+           width: 100%;
+           height: 45px;
+           background-color: #66745c;
+           border: none;
+           color: white;
+           font-size: 18px;
+           border-radius: 6px;
+       }
+
+       .login-wrap .login-tip {
+           font-size: 30px;
+           color: #6f9681;
+       }
+
+       .help {
+           background-color: rgba(0, 0, 0, 0.5);
+       }
+
+       .help-title {
+           text-align: center;
+       }
+
+       .help h1 {
+           color: #7A991A;
+       }
+
+       .help p {
+           color: blanchedalmond;
+       }
+
+       .search-wrap {
+           background-color: rgba(0, 0, 0, 0.5);
+           text-align: center;
+           padding: 50px;
+       }
+
+       .searchclass {
+           margin-bottom: 50px;
+       }
+
+       .searchclass ul {
+           list-style-type: none;
+       }
+
+       .searchclass li {
+           display: inline;
+       }
+
+       .searchclass .active {
+           font-size: 22px;
+           color: #FF6E3A;
+           margin-left: 20px;
+           margin-right: 20px;
+           margin-bottom: 50px;
+           background-color: rgba(0, 0, 0, 0.2);
+           padding: 10px;
+           cursor: pointer;
+       }
+
+       .searchclass .non-active {
+           font-size: 22px;
+           color: #FCFDEF;
+           margin-left: 20px;
+           margin-right: 20px;
+           cursor: pointer;
+       }
+
+       .searchbar {
+           position: relative;
+           left: 220px;
+           margin-bottom: 100px;
+       }
+
+       .searchbar input {
+           float: left;
+           height: 30px;
+           width: 500px;
+           border-radius: 6px;
+           padding: 6px 15px 5px;
+           background-color: #FFFFFF;
+       }
+
+       .searchbar .search-button {
+           position: absolute;
+           left: 540px;
+           top: 1px;
+       }
+
+       .searchbar .search-button button {
+           float: left;
+           margin-left: 20px;
+           color: #FFFFFF;
+           font: 20px Arial;
+           background-color: #FF6E3A;
+           padding: 10px 24px 10px;
+           cursor: pointer;
+           border: none;
+       }
+
+       .search-active {
+           position: absolute;
+           left: 0;
+           top: 0;
+       }
+
+       .content-top {
+           text-align: right;
+           font-size: 13px;
+           color: white;
+           background-color: rgba(0, 0, 0, 0.3);
+       }
+
+       .content {
+           color: white;
+           background-color: rgba(0, 0, 0, 0.5);
+       }
+
+       .content-head {
+           color: white;
+           border-bottom: 1px solid gray;
+           font-size: 10px;
+       }
+
+       .content-class {
+           color: white;
+           border-bottom: 1px solid gray;
+           font-size: 10px;
+       }
+
+       .content-class-before {
+           color: white;
+           border-radius: 6px;
+           background-color: #66745c;
+           margin-top: 0px;
+       }
+
+       .content-list {
+           display: block;
+           overflow: hidden;
+       }
+
+       .search-book {
+           float: left;
+           width: 25%;
+           text-align: center;
+           padding: 10px 0px;
+       }
+
+       .search-bookimg img {
+           cursor: pointer;
+           max-height: 220px;
+           max-width: 220px;
+           vertical-align: middle;
+       }
+
+       .search-div-span {
+           float: left;
+           width: 100%;
+           text-align: left;
+           padding-left: 30px;
+       }
+
+       .div-pagenum {
+           display: block;
+           text-align: center;
+           overflow: hidden;
+       }
+
+       .jumppage {
+           display: block;
+           text-align: center;
+           overflow: hidden;
+       }
+
+       .jumppage a {
+           display: inline;
+           overflow: hidden;
+       }
+
+       .jumpul {
+           display: inline;
+           list-style-type: none;
+           padding: 10px;
+       }
+
+       .jumpitem {
+           display: inline;
+       }
+
+       .cart {
+           background-color: rgba(0, 0, 0, 0.5);
+           overflow: hidden;
+           color: white;
+           border: gray solid 1px;
+       }
+
+       .cart-table {
+           overflow: hidden;
+           padding: 20px;
+           border-bottom: gray solid 1px;
+           background-color: rgba(0, 0, 0, 0.2);
+           display: block;
+       }
+
+       .table-checkbox {
+           float: left;
+           padding-right: 30px;
+       }
+
+       .table-checkbox input {
+           cursor: pointer;
+       }
+
+       .table-checkbox label {
+           cursor: pointer;
+       }
+
+       .table-bookinfo {
+           float: left;
+           padding-right: 600px;
+       }
+
+       .table-item {
+           float: left;
+           padding-right: 50px;
+       }
+
+       .order {
+           overflow: hidden;
+           padding: 10px;
+       }
+
+       .order-holder {
+           display: block;
+           overflow: hidden;
+           background-color: rgba(0, 0, 0, 0.2);
+           margin: 10px;
+           border: 1px solid black;
+       }
+
+       .table-checkboxItem {
+           float: left;
+           padding-right: 58px;
+       }
+
+       .table-checkboxItem input {
+           cursor: pointer;
+       }
+
+       .bookinfo {
+           float: left;
+           padding-right: 60px;
+       }
+
+       .bookinfo img {
+           max-height: 80px;
+           max-width: 80px;
+           vertical-align: middle;
+       }
+
+       .bookinfo-content {
+           float: right;
+           padding: 8px 0 0 10px;
+           line-height: 1;
+           width: 500px;
+       }
+
+       .bookprice {
+           float: left;
+           padding-right: 28px;
+           text-align: center;
+           margin: 0;
+       }
+
+       .bookprice-content {
+           margin-top: 30px;
+           float: left;
+           line-height: 1;
+           width: 50px;
+       }
+
+       .booknum {
+           float: left;
+           text-align: center;
+           width: 78px;
+           margin: 0;
+       }
+
+       .booknum-content {
+           margin-top: 25px;
+           float: left;
+           line-height: 1;
+           width: 78px;
+       }
+
+       .booknum-text {
+           float: left;
+           padding: 3px 2px 0px 3px;
+           width: 20px;
+           line-height: 20px;
+       }
+
+       .booknum-span-crease {
+           float: left;
+       }
+
+       .booknum-number-increase {
+           margin-bottom: 3px;
+           width: 16px;
+           height: 12px;
+           overflow: hidden;
+           display: block;
+           line-height: 12px;
+           cursor: pointer;
+       }
+
+       .booknum-number-decrease {
+           margin-top: 3px;
+           width: 16px;
+           height: 12px;
+           overflow: hidden;
+           display: block;
+           line-height: 12px;
+           cursor: pointer;
+       }
+
+       .booknum-number-unit {
+           float: left;
+           margin-top: 5px;
+       }
+
+       .bookall {
+           float: left;
+           text-align: center;
+           padding-right: 28px;
+           margin: 0;
+       }
+
+       .bookall-content {
+           margin-top: 30px;
+           float: left;
+           line-height: 1;
+           width: 50px;
+       }
+
+       .bookopt {
+           float: left;
+           text-align: center;
+           padding-right: 28px;
+           margin: 0;
+       }
+
+       .bookopt-content {
+           float: left;
+           line-height: 1;
+           width: 50px;
+           margin-top: 30px;
+       }
+
+       .bookopt span {
+           cursor: pointer;
+           display: block;
+       }
+
+       .order-update button {
+           margin-left: 980px;
+           background-color: yellowgreen;
+           color: #25331e;
+           border: none;
+           cursor: pointer;
+           padding: 10px;
+           margin-bottom: 5px;
+       }
+
+       .order-allprice {
+           border-top: 1px solid grey;
+       }
+
+       .order-allprice-title {
+           float: left;
+           padding-left: 10px;
+       }
+
+       .order-allprice-price {
+           float: left;
+           padding-left: 650px;
+       }
+
+       .price-content {
+           float: left;
+           margin-right: 50px;
+       }
+
+       .order-allprice-buy {
+           float: right;
+           padding-right: 55px;
+       }
+
+       .order-allprice-buy button {
+           margin-top: 20px;
+           background-color: yellowgreen;
+           color: #25331e;
+           border: none;
+           cursor: pointer;
+           padding: 10px 18px;
+           margin-bottom: 5px;
+       }
+
+       .book-top {
+           background-color: rgba(0, 0, 0, 0.5);
+           overflow: hidden;
+           margin: 5px auto;
+       }
+
+       .book-top-content {
+           color: white;
+           float: right;
+       }
+
+       .perbook-info {
+           color: white;
+       }
+
+       .perbookinfo-brife {
+           display: block;
+           overflow: hidden;
+           background-color: rgba(0, 0, 0, 0.5);
+           margin: 10px auto;
+       }
+
+       .perbookinfo-img {
+           float: left;
+       }
+
+       .perbookinfo-img img {
+           max-height: 400px;
+           max-width: 400px;
+           vertical-align: middle;
+       }
+
+       .perbookinfo-content {
+           float: left;
+           margin-left: 50px;
+       }
+
+       .perbookinfo-name {
+           color: antiquewhite;
+       }
+
+       .perbookinfo-item {
+           display: block;
+           overflow: hidden;
+           background-color: rgba(0, 0, 0, 0.2);
+           margin: 10px 5px;
+       }
+
+       .perbookinfo-item-title {
+           float: left;
+           width: 70px;
+           color: burlywood;
+           vertical-align: middle;
+       }
+
+       .perbookinfo-item-title-content {
+           padding-right: 10px;
+           vertical-align: middle;
+       }
+
+       .bookbuy-number-title {
+           float: left;
+           width: 70px;
+           color: burlywood;
+           padding-top: 5px;
+       }
+
+       .bookbuy-number-content {
+           padding-right: 10px;
+       }
+
+       .perbookinfo-item-content {
+           float: left;
+           margin-left: 10px;
+       }
+
+       .dashed-div {
+           border-top: dashed gray 1px;
+           margin-bottom: 5px;
+       }
+
+       .bookbuy-number {
+           display: block;
+           overflow: hidden;
+           background-color: rgba(0, 0, 0, 0.2);
+           margin: 10px 5px;
+       }
+
+       .bookbuy-number-content {
+           vertical-align: middle;
+       }
+
+       .input-number-text {
+           float: left;
+           margin-top: 2px;
+           margin-left: 10px;
+           padding: 3px 2px 0px 3px;
+           width: 40px;
+           line-height: 20px;
+       }
+
+       .bookbuy-button .buy-button {
+           margin-top: 10px;
+           float: left;
+           color: #FFFFFF;
+           font: 20px Arial;
+           background-color: #FF6E3A;
+           padding: 10px 24px 10px;
+           cursor: pointer;
+           border: none;
+       }
+
+       .span-crease {
+           float: left;
+       }
+
+       .number-increase {
+           margin: 3px;
+           width: 16px;
+           height: 12px;
+           overflow: hidden;
+           display: block;
+           line-height: 12px;
+           cursor: pointer;
+       }
+
+       .number-decrease {
+           margin: 3px;
+           width: 16px;
+           height: 12px;
+           overflow: hidden;
+           display: block;
+           line-height: 12px;
+           cursor: pointer;
+       }
+
+       .number-unit {
+           margin-top: 5px;
+           float: left;
+           color: wheat;
+       }
+
+       .bookbuy-button .add-button {
+           margin-top: 10px;
+           margin-left: 40px;
+           float: left;
+           color: #FFFFFF;
+           font: 20px Arial;
+           background-color: #405133;
+           padding: 10px 24px 10px;
+           cursor: pointer;
+           border: none;
+       }
+
+       .perbookinfo-all {
+           display: block;
+           background-color: rgba(0, 0, 0, 0.5);
+       }
+
+       .perbookinfo-all-top {
+           display: block;
+           overflow: hidden;
+           margin-bottom: 5px;
+           border-bottom: white solid 1px;
+       }
+
+       .book-top-content {
+           margin-left: 5px;
+           float: left;
+       }

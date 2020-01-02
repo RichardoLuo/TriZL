@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html" class="login-logout-button">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词" onkeydown="huiche(event,4)">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="help">
+         <div class="help-title">
+            <h1>联系我们</h1>
+         </div>
+         <p>张景天  qq:</p> <a href="">oanakiaja@qq.com</a>
+         <p>钟昊  qq:</p> <a href="">729354837@qq.com</a>
+         <p>李若涵  qq:</p> <a href="">1224787558@qq.com</a>
+         <p>周嘉莹  qq:</p> <a href="">1147083244@qq.com</a>
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script>
+   $('document').ready(function () {
+      var name = $.cookie("name")
+      if (name) {
+         $navshow = $('.nav-show')
+         $navshow.append('<span style="color: white; padding-left:10px" class="navshow-id"> Welcome!' + "</span>"+`<span style="color: white; padding-left:10px" class="nav-showname">`+name + "</span>");
+
+         $logbutton = $('.login-logout-button')
+         $logbutton.text("Logout")
+         $logbutton.attr("href", "./aboutus.html")
+         $logbutton.click(function () {
+            $.removeCookie("name", { path: '/' })
+            $.removeCookie("port",{ path: '/'})
+         });
+      }
+   })
+</script>
+
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html" class="login-logout-button">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="search-wrap">
+         <div class="searchclass">
+            <ul>
+               <li class="active">Title</li>
+               <li class="non-active">Author</li>
+               <li class="non-active">ISBN</li>
+            </ul>
+         </div>
+         <div class="searchbar">
+            <div class="search-active">
+               <input type="text" placeholder="searchTitle" class="active">
+            </div>
+            <div class="search-button">
+               <button class="search">search</button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <div class="section">
+      <div class="content-top">
+         <span class="content-index">首页</span>
+      </div>
+      <div class="content">
+         <div class="content-class-before">
+            <h1>商品目录</h1>
+         </div>
+         <div class="content-list">
+            <div class="search-book">
+               <div class="search-bookimg">
+                  <a href="./bookinfo.html" class="link"><img src="./images/book1.jpg" alt="img"></a>
+               </div>
+               <div class="search-bookinfo">
+                  <div class="search-div-span">
+                     <span>书名:</span>
+                     <span class="search-bookname">论上单如何单杀</span>
+                  </div>
+                  <div class="search-div-span">
+                     <span>作者:</span>
+                     <span class="search-bookauthor">TheShy</span>
+                  </div>
+                  <div class="search-div-span">
+                     <span>ISBN:</span>
+                     <span class="search-bookisbn">ASDASDASDASDZCZ</span>
+                  </div>
+                  <div class="search-div-span">
+                     <span>价格:</span>
+                     <span class="search-bookauthor">￥100</span>
+                  </div>
+                  <div class="search-div-span">
+                     <span>库存:</span>
+                     <span class="search-bookauthor">100</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="div-pagenum">
+            <span>共</span>
+            <span class="booknums">0</span>
+            <span>条记录，共</span>
+            <span class="pagenums">1</span>
+            <span>页</span>
+         </div>
+         <div class="jumppage">
+            <!-- <a href="#">上一页</a>
+            <ul class="jumpul">
+               <li class="jumpitem">
+                  <a href="#">1</a>
+               </li>
+               <li class="jumpitem">
+                  <a href="#">2</a>
+               </li>
+               <li class="jumpitem">
+                  <a href="#">3</a>
+               </li>
+             </ul>
+            <a href="#">下一页</a> -->
+         </div>
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script src="./js/config.js"></script>
+<script>
+   $('document').ready(function () {
+      // 登录状态
+      var name = $.cookie("name")
+      if (name) {
+         $navshow = $('.nav-show')
+         $navshow.append('<span style="color: white; padding-left:10px" class="navshow-id"> Welcome!' + "</span>"+`<span style="color: white; padding-left:10px" class="nav-showname">`+name + "</span>");
+
+         $logbutton = $('.login-logout-button')
+         $logbutton.text("Logout")
+         $logbutton.attr("href", "./search.html")
+         $logbutton.click(function () {
+            $.removeCookie("name", { path: './' })
+            $.removeCookie("port", { path: '/' })
+         });
+      }
+
+      $("button.search").click(function () {
+         searchPage(1)
+      })
+
+      $("li.non-active").click(function () {
+         $("li.active").attr("class", "non-active")
+         $(this).attr("class", "active")
+         var name = $(this).text()
+         console.log(name)
+         $("input.active").attr("placeholder", "search" + name)
+      })
+      $("li.active").click(function () {
+         $("li.active").attr("class", "non-active")
+         $(this).attr("class", "active")
+         var name = $(this).text()
+         console.log(name)
+         $("input.active").attr("placeholder", "search" + name)
+      })
+
+      
+   })
+
+
+   function searchPage(page) {
+         var val = $("input.active").val()
+         method = $("li.active").text()
+         //请求
+         if (method == "Author") {
+            method = "author"
+         }
+         else if (method == "Title") {
+            method = "name"
+         }
+         else if (method == "ISBN") {
+            method = "isbn"
+         }
+         console.log(serverIP + `/book/` + method + `/` + val)
+         $.ajax({
+            url: serverIP + `/book/` + method + `/` + val,
+            type: "GET",
+            // data: {
+            //    method: "name",
+            //    id: val
+            // },
+            timeout: 3000,
+            dataType: "json",
+            success: function (data) {
+               if (data.err) {
+                  content = ""
+                  $(".content-list").empty()
+                  $(".content-list").append(content)
+               } else {
+                  var booklist = data.bookList
+                  if (booklist.length != 0) {
+                     var content = "";
+                     var length = booklist.length;
+                     var pagelength = 8;
+                     var pageNum = Math.ceil(length / pagelength);
+                     $("span.booknums").text(length)
+                     $("span.pagenums").text(pageNum)
+                     for (var i = (page - 1) * pagelength; i < (page * pagelength); i++) {
+                        if (booklist[i]) {
+                           if (!booklist[i].picture) { booklist[i].picture = "./images/book1.jpg" }
+                           content +=
+                              ` <div class="search-book">
+                              <div class="search-bookimg">
+                                 <a href="./bookinfo.html?isbn=`+booklist[i].isbn+`" class="link"><img src=`+ booklist[i].picture + ` alt="img"></a>
+                              </div>
+                              <div class="search-bookinfo">
+                                 <div class="search-div-span">
+                                    <span>书名:</span>
+                                    <span class="search-bookname">`+ booklist[i].name + `</span>
+                                 </div>
+                                 <div class="search-div-span">
+                                    <span>作者:</span>
+                                    <span class="search-bookauthor">`+ booklist[i].author + `</span>
+                                 </div>
+                                 <div class="search-div-span">
+                                    <span>ISBN:</span>
+                                    <span class="search-bookisbn">`+ booklist[i].isbn + `</span>
+                                 </div>
+                                 <div class="search-div-span">
+                                    <span>价格:￥</span>
+                                    <span class="search-bookprice">`+ booklist[i].price + `</span>
+                                 </div>
+                                 <div class="search-div-span">
+                                    <span>库存:</span>
+                                    <span class="search-bookrepertory">`+ booklist[i].repertory + `</span>
+                                    <span>本</span>
+                                 </div>
+                                 <div class="search-div-span">
+                                    <span>销量:</span>
+                                    <span class="search-booksolenum">`+ booklist[i].soleNum + `</span>
+                                 </div>
+                              </div>
+                           </div>`
+                        }
+                        else{
+                           break
+                        }
+                     }
+                     $(".content-list").empty()
+                     $(".content-list").append(content)
+                     pageinfo = ""
+                     //判断前面是否有界面
+                     if (page == 1) {
+                        pageinfo +=
+                           `
+                        `
+                     } else {
+                        pageinfo +=
+                        `
+                        <a href="javascript:void(0);" onclick="searchPage(`+ (page-1) + `)" >上一页</a>
+                        `
+                     }
+                     pageinfo +=
+                        `
+                     <ul class="jumpul">
+                     `
+                     for (var i = 1; i <= pageNum; i++) {
+                        if (i == page) {
+                           pageinfo +=
+                              `
+                           <li class="jumpitem"><a href="#">`+ i + `</a></li>
+                           `
+                        } else {
+                           pageinfo +=
+                              `
+                           <li class="jumpitem"><a href="javascript:void(0);" onclick="searchPage(`+ i + `)"  >` + i + `</a></li>
+                           `
+                        }
+                     }
+                     pageinfo +=
+                        `
+                     </ul>
+                     `
+                     //判断后面是否有界面
+                     if (page == pageNum) {
+                        pageinfo +=
+                           `
+                        `
+                     } else {
+                        pageinfo +=
+                           `
+                        <a href="javascript:void(0);" onclick="searchPage(`+ (page+1) + `)">下一页</a>
+                        `
+                     }
+                     $(".jumppage").empty();
+                     $(".jumppage").append(pageinfo);
+                  }
+               }
+            },
+            error: function () {
+               alert("请求超时")
+            }
+         });
+      }
+</script>
+
+</html>
