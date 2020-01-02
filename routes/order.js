@@ -5,7 +5,7 @@ let OrderController = require('../controller/OrderController');
 
 /**
  * @swagger
- * /order:
+ * /order/{orderID}:
  *   get:
  *     tags:
  *       - Order
@@ -22,7 +22,7 @@ let OrderController = require('../controller/OrderController');
  *       200:
  *         description: ok
  */
-router.get('/',OrderController.selectOrder);
+router.get('/:orderID',OrderController.selectOrder);
 
 /**
  * @swagger
@@ -68,7 +68,7 @@ router.post('/',OrderController.insertOrder);
  *     parameters:
  *       - name: body
  *         description:
- *         in: path
+ *         in: body
  *         required: true
  *         schema:
  *           properties:
