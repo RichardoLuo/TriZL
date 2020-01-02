@@ -62,7 +62,7 @@ exports.sql = function () {
 	 * @returns {string}
 	 */
 	function insertOrder(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr) {
-		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, NOW(), {1}, {2}, {3}, {4}, {5}, 0);".format(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr);
+		return "INSERT INTO Orders  (OrderID, OrderTime, ISBN, PerchaseNum, CustomerName, CustomerPhone, CustomerAddr, OrderStatus)  VALUES  ({0}, NOW(), {1}, {2}, '{3}', '{4}', '{5}', 0);".format(orderID, isbn, perchaseNum, customerName, customerPhone, customerAddr);
 	}
 
 	/**

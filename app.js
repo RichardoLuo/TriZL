@@ -50,10 +50,12 @@ app.use(session(configSession.options));
 let indexRouter = require('./routes/index');
 let userRouter = require('./routes/user');
 let bookRouter = require('./routes/book');
+let orderRouter = require('./routes/order');
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/book', bookRouter);
+app.use('/order',orderRouter);
 
 // serve swagger
 app.get('/swagger.json', function(req, res) {

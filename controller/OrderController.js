@@ -13,7 +13,9 @@ exports.selectOrder = function (req, res, next) {
 };
 
 exports.insertOrder = function (req, res, next) {
-    let orderID = req.body.orderID;
+    // 使用snowflake生成唯一id
+    let snowflake = require('node-snowflake').Snowflake;// use default set
+    let orderID = snowflake.nextId().substring(0,10);
     let isbn = req.body.isbn;
     let perchaseNum = req.body.perchaseNum;
     let customerName = req.body.customerName;
@@ -24,7 +26,7 @@ exports.insertOrder = function (req, res, next) {
             return res.json({err:err});
         }
         else{
-            return res.json({err:null});
+            return res.json({err:null,orderID: orderID});
         }
     });
 };

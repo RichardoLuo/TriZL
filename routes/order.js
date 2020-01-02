@@ -40,8 +40,6 @@ router.get('/',OrderController.selectOrder);
  *         required: true
  *         schema:
  *           properties:
- *             orderID:
- *               type: string
  *             isbn:
  *               type: string
  *             perchaseNum:
@@ -109,3 +107,5 @@ router.delete('/',OrderController.deleteOrder);
  *         description: ok
  */
 router.put('/',OrderController.updateOrder);
+
+module.exports = router;
