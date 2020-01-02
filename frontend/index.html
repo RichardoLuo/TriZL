@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="#">图书</a>
+               <a href="#">电子书</a>
+               <a href="#">网络文学</a>
+               <a href="#">书籍周边</a>
+               <a href="#">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词" onkeydown="huiche(event,4)">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="content">
+         <div class="welcome">
+            <h1>Welcome to my book shop!</h1>
+            <p>if you have a account please <a href="login.html">login</a></p>
+            <p>or please <a href="createaccount.html">create a new account</a></p>
+         </div>
+
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script>
+   $("document").ready(function(){
+      // 登录状态没断，直接跳转
+      var name = $.cookie("name")
+      if(name){
+         window.location.href = "./shoppingbasket.html"
+      }
+   })
+</script>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html" class="login-logout-button">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词" onkeydown="huiche(event,4)">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="book-top">
+         <div class="book-top-content">
+            图书信息>
+         </div>
+      </div>
+      <div class="perbook-info">
+         <div class="perbookinfo-brife">
+            <div class="perbookinfo-img">
+               <img src="images/book1.jpg" alt="images/book1.jpg" class="perbook">
+            </div>
+            <div class="perbookinfo-content">
+               <div class="perbookinfo-name">
+                  <h1 class="perbook-name">论上单如何单杀</h1>
+               </div>
+               <div class="perbookinfo-item">
+                  <div class="perbookinfo-item-title">
+                     <div class="perbookinfo-item-title-content">
+                        价格
+                     </div>
+                  </div>
+                  <div class="perbookinfo-item-content">
+                     <span style="float:left;">￥</span><span class="price-content">100</span>
+                  </div>
+               </div>
+               <div class="perbookinfo-item">
+                  <div class="perbookinfo-item-title">
+                     <div class="perbookinfo-item-title-content">
+                        作者
+                     </div>
+                  </div>
+                  <div class="perbookinfo-item-content">
+                     <span class="author-content">TheShy</span>
+                  </div>
+               </div>
+               <div class="perbookinfo-item">
+                  <div class="perbookinfo-item-title">
+                     <div class="perbookinfo-item-title-content">
+                        ISBN
+                     </div>
+                  </div>
+                  <div class="perbookinfo-item-content">
+                     <span class="isbn-content">ASDASDAKSDLASDIOJ123123JOIASD</span>
+                  </div>
+               </div>
+               <div class="perbookinfo-item">
+                  <div class="perbookinfo-item-title">
+                     <div class="perbookinfo-item-title-content">
+                        出版时间
+                     </div>
+                  </div>
+                  <div class="perbookinfo-item-content">
+                     <span class="date-content">2019-1</span>
+                  </div>
+               </div>
+               <div class=dashed-div></div>
+               <div class="bookbuy-number">
+                  <div class="bookbuy-number-title">
+                     <div class="bookbuy-number-content">
+                        数量
+                     </div>
+                  </div>
+                  <div class="bookbuy-number-content">
+                     <input type="number" class="input-number-text" value="1" max="8" min="1" title="请输入购买数量"
+                        oninput="value=value.replace(/[^\d]/g,'')">
+                     <div class="span-crease">
+                        <div class="number-increase">
+                           👆
+                        </div>
+                        <div class="number-decrease">
+                           👇
+                        </div>
+                     </div>
+                     <div class="number-unit">
+                        本
+                     </div>
+                     <div class="number-storage" style="color: gray; margin:5px; float: left;">
+                        <span>库存</span><span class="storage-number">10</span><span>本</span>
+                     </div>
+                     <div class="number-storage" style="color: gray; margin:5px; float: left;">
+                        <span>销售量</span><span class="sole-number">10</span><span>本</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="bookbuy-button">
+                  <button class='buy-button'>立即购买</button>
+                  <button class="add-button">加入购物车</button>
+               </div>
+            </div>
+         </div>
+         <div class="perbookinfo-all">
+            <div class="perbookinfo-all-top">
+               <div class="book-top-content">
+                  图书详情
+               </div>
+            </div>
+            <div class="perbookinfo-all-content">
+               <h2>图书简介</h2>
+               <p>《JavaScript从入门到精通》分为三篇：第一篇为JavaScript语法基础，主要包括JavaScript简介、如何实现JavaScript、数据类型、变量和常量、运算符、语句和函数等内容；第二篇为JavaScript对象，主要包括对象、核心对象、数组、正则表达式、对象模型和事件驱动、窗口与框架、文档对象、表单对象等内容；第三篇为高级技术，主要包括BOM中的其他对象、文档对象模型以及Ajax技术等内容。
+                  《JavaScript从入门到精通》适合于JavaScript的初学者使用，也适合有一定JavaScript基础想进一步提高的网页开发者使用。
+               </p>
+            </div>
+         </div>
+
+
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.params.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/port.js"></script>
+<script>
+
+   $('document').ready(function () {
+      //登录状态
+      var name = $.cookie("name")
+      if (name) {
+         $navshow = $('.nav-show')
+         $navshow.append('<span style="color: white; padding-left:10px" class="navshow-id"> Welcome!' + "</span>" + `<span style="color: white; padding-left:10px" class="nav-showname">` + name + "</span>");
+
+         $logbutton = $('.login-logout-button')
+         $logbutton.text("Logout")
+         $logbutton.attr("href", "./bookinfo.html")
+         $logbutton.click(function () {
+            $.removeCookie("name", { path: './' })
+            $.removeCookie("port", { path: '/' })
+         });
+      }
+
+      //商品信息load
+      var isbn = $.query.get().isbn
+      $.ajax({
+         url: serverIP + "/book" + "/isbn/" + isbn,
+         type: "GET",
+         // data: {
+         //    method: "isbn",
+         //    id: isbn,   
+         // },
+         timeout: 30000,
+         dataType: "json",
+         success: function (data) {
+            var data = data.bookList[0]
+            console.log(data)
+            $("img.perbook").attr("src", data.pirture);
+            $("h1.perbook-name").text(data.name);
+            $("span.price-content").text(data.price);
+            $("span.author-content").text(data.author);
+            $("span.isbn-content").text(data.isbn);
+            $("span.date-content").text(data.releaseTime);
+            $("span.storage-number").text(data.repertory);
+            $(".perbookinfo-all-content").find("p").text(data.introduction);
+            $("span.sole-number").text(data.soleNum)
+         },
+         error: function () {
+            alert("请求超时")
+         }
+      });
+
+
+      //修改商品数目
+      $('.number-increase').click(function () {
+         let val = parseInt($("input.input-number-text").val())
+         if (val > 7) { return false }
+         $("input.input-number-text").val(val + 1)
+         console.log("upchange")
+      })
+
+      $('.number-decrease').click(function () {
+         let val = parseInt($("input.input-number-text").val())
+         if (val < 2) { return false }
+         $("input.input-number-text").val(val - 1)
+         console.log("downchange")
+      })
+
+      //购买
+      $('button.buy-button').click(function () {
+         //请求用户数据
+         var name = "null";
+         var phone = "null";
+         var address = "null";
+         $.ajax({
+            url: serverIP + "/user/" + $(".nav-showname").text(),
+            type: "GET",
+            timeout: 30000,
+            dataType: "json",
+            success: function (data) {
+               if (data.err) { alert("用户信息错误") }
+               else {
+                  name = data.user.name;
+                  phone = data.user.phone;
+                  address = data.user.address;
+                           //拿着isbn号 和数目 去买
+                  var number = parseInt($("span.storage-number").text())
+                  var buy = parseInt($("input.input-number-text").val())
+                  if (number >= buy) {
+                     $.ajax({
+                        url: serverIP + "/order",
+                        type: "POST",
+                        data: {
+                           "isbn": $(".isbn-content").text(),
+                           "perchaseNum": $(".input-number-text").val(),
+                           "customerName": name,
+                           "customerPhone": phone,
+                           "customerAddr": address
+                        },
+                        timeout: 30000,
+                        dataType: "json",
+                        success: function (data) {
+                           if (data.err) {
+                              alert("订单失败")
+                           } else {
+                              // 买到
+                              alert("下单成功")
+                              window.location.href = "./bookinfo.html?isbn=" + $(".isbn-content").text();
+                           }
+                        },
+                        error: function () {
+                           alert("请求超时")
+                        }
+                     });
+                  } else {
+                     alert("超出库存")
+                  }
+               }
+            },
+            error: function () {
+               alert("请登录")
+               return;
+            }
+         });
+
+
+
+      })
+      //加入购物车
+      $('button.add-button').click(function () {
+         port = $.cookie("port")
+         if (!port) {
+            book = new Object()
+            book.name = $("h1.perbook-name").text();
+            book.number = parseInt($("input.input-number-text").val())
+            book.price = $("span.price-content").text();
+            book.picture = $("img.perbook").attr("src");
+            book.isbn = $("span.isbn-content").text();
+            var booklist = []
+            booklist.push(book)
+         }
+         else {
+            var booklist = JSON.parse(port);
+            for (i = 0; i < booklist.length; i++) {
+               if (booklist[i].isbn == $("span.isbn-content").text()) {
+                  booklist[i].number += parseInt($("input.input-number-text").val())
+                  break;
+               }
+            }
+            if (i == booklist.length) {
+               book = new Object()
+               book.name = $("h1.perbook-name").text();
+               book.number = parseInt($("input.input-number-text").val())
+               book.price = $("span.price-content").text();
+               book.picture = $("img.perbook").attr("src");
+               book.isbn = $("span.isbn-content").text();
+               booklist.push(book)
+            }
+         }
+         var str = JSON.stringify(booklist);
+         $.cookie("port", str)
+         alert("添加购物车成功")
+      })
+   })
+
+</script>
+
+</html>

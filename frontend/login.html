@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词" onkeydown="huiche(event,4)">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="login">
+         <div class="login-wrap">
+            <div class="login-tip">
+               <p>登录</p>
+            </div>
+            <div class="login-d">
+               <img src="./images/userid.png" alt="">
+               <input type="text" placeholder="输入用户名" class="name" />
+            </div>
+            <div class="login-d">
+               <img src="images/passwd.png" alt="">
+               <input type="password" placeholder="输入用户密码" class="password">
+            </div>
+            <div class="login-button">
+               <button type="submit" class="login">登录</button>
+            </div>
+            <div class="login-button">
+               <a href="createaccount.html"><button>没账号，注册账号</button></a>
+            </div>
+            <div class="login-button">
+               <a href="aboutus.html"><button>有账号？忘记密码</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script src="js/config.js"></script>
+<script>
+   $(document).ready(function () {
+      $("button.login").click(function () {
+         var $name = $("input.name");
+         var $password = $("input.password");
+         if ($name.val() == "" || $password.val() == "") {
+            $name.val("");
+            $password.val("");
+            alert("账号密码不可为空");
+            return false;
+         }
+         console.log(serverIP)
+         console.log(serverIP + "/user/session")
+
+         $.ajax({
+            url: serverIP + "/user/session",
+            type: "POST",
+            data: {
+               name: $name.val(),
+               password: $password.val()
+            },
+            timeout: 30000,
+            dataType: "json",
+            success: function (data) {
+               if (data.err) {
+                  $name.val("");
+                  $password.val("");
+                  alert("请输入正确的用户名和密码")
+               } else {
+                  // 保存登录状态
+                  $.cookie("name",$name.val(),{expires:7,path:'/'})
+                  window.location.href = "./shoppingbasket.html"
+               }
+            },
+            error: function () {
+               alert("请求超时")
+            }
+         });
+      })
+   });
+
+   //判断是否敲击了Enter键 
+   $(document).keyup(function (event) {
+      if (event.keyCode == 13) {
+         $("button.login").trigger("click");
+      }
+   });
+</script>
+
+</html>

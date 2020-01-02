@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="login">
+         <div class="login-wrap">
+            <div class="login-tip">
+               <p>注册账户</p>
+            </div>
+            <div class="login-d">
+               <img src="./images/userid.png" alt="">
+               <input type="text" placeholder="输入用户名" class="name" />
+            </div>
+            <div class="login-d">
+               <img src="images/passwd.png" alt="">
+               <input type="password" placeholder="输入用户密码" class="password">
+            </div>
+            <div class="login-d">
+               <img src="images/email.png" alt="">
+               <input type="text" placeholder="邮箱" class="mail">
+            </div>
+            <div class="login-d">
+               <img src="images/phone.png" alt="">
+               <input type="text" placeholder="电话" class="phone">
+            </div>
+            <div class="login-d">
+               <img src="images/address.png" alt="">
+               <input type="text" placeholder="收货地址" class="address">
+            </div>
+            <div class="login-button">
+               <button type="submit" class="createaccount">注册</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script src="./js/config.js"></script>
+<script>
+   $(document).ready(function () {
+      $.removeCookie("name",{path:'./'})
+      $.removeCookie("port",{ path: '/'})
+      //注册
+      $("button.createaccount").click(function () {
+         var $name = $("input.name")
+         var $address = $("input.address")
+         var $phone = $("input.phone")
+         var $mail = $("input.mail")
+         var $password = $("input.password")
+
+         // 检查格式正确性
+
+         $.ajax({
+            url: serverIP + "/user",
+            type: "POST",
+            data: {
+               name: $name.val(),
+               address: $address.val(),
+               phone: $phone.val(),
+               mail: $mail.val(),
+               password: $password.val()
+            },
+            timeout: 3000,
+            dataType: "json",
+            success: function (data) {
+               if (data.err) {
+                  alert("输入错误")
+               } else {
+                  //保存登录状态
+                  $.cookie("name", $name.val(), { expires: 7, path: '/' })
+                  window.location.href = "./shoppingbasket.html"
+               }
+            },
+            error: function () {
+               alert("请求超时")
+            }
+         })
+      })
+
+   
+
+      //判断是否敲击了Enter键 
+      $(document).keyup(function (event) {
+         if (event.keyCode == 13) {
+            $("button.createaccount").trigger("click");
+         }
+      });
+   });
+</script>
+
+</html>

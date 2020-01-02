@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+
+   <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+   <script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+   <script src="./js/port.js"></script>
+   <script src="./js/config.js"></script>
+   <script>
+      function countTotal() {
+         $check = $(".input-check")
+         total = 0
+         for (var i = 1; i < $check.length; i++) {
+            if ($check[i].checked) {
+               total += parseFloat($(".booknum-text")[i - 1].value) * parseFloat($(".bookprice-price")[i - 1].innerHTML).toFixed(2)
+            }
+         }
+         $("span.order-allprice-price-content").text(total.toFixed(2))
+      }
+
+
+
+      $('document').ready(function () {
+
+         var name = $.cookie("name")
+         console.log(name)
+         if (name) {
+            $navshow = $('.nav-show')
+            $navshow.append('<span style="color: white; padding-left:10px" class="navshow-id"> Welcome!' + "</span>" + `<span style="color: white; padding-left:10px" class="nav-showname">` + name + "</span>");
+
+            $logbutton = $('.login-logout-button')
+            $logbutton.text("Logout")
+            $logbutton.attr("href", "./search.html")
+            $logbutton.click(function () {
+               $.removeCookie("name", { path: '/' })
+               $.removeCookie("port", { path: '/' })
+            });
+         }
+         else {
+            window.location.href = "./login.html"
+         }
+
+         strlist = $.cookie("port")
+         if (strlist) {
+
+            booklist = JSON.parse(strlist)
+            $order = $(".order")
+            content = ""
+            if (booklist.length > 0) {
+               for (var i = 0; i < booklist.length; i++) {
+                  content +=
+                     `
+            <div class="order-holder">
+               <div class="table-checkboxItem">
+                  <input type="checkbox" name="items[]" class="input-check" checked="true" id="input-check">
+               </div>
+               <div class="bookinfo">
+                  <a href="./bookinfo.html?isbn=`+ booklist[i].isbn + `"><img src="` + booklist[i].picture + `" alt="图片" class="picture-content"></a>
+                  <div class="bookinfo-content">
+                     <a href="./bookinfo.html?isbn=`+ booklist[i].isbn + `"><span class="name-content">` + booklist[i].name + `</span> [ISBN]<span
+                           class="isbn-content">` + booklist[i].isbn + `</span></a>
+                  </div>
+               </div>
+               <div class="bookprice">
+                  <div class="bookprice-content">
+                     <span>￥</span><span class="bookprice-price">`+ parseFloat(booklist[i].price).toFixed(2) + `</span>
+                  </div>
+               </div>
+               <div class="booknum">
+                  <div class="booknum-content">
+                     <input type="text" class="booknum-text" value="`+ booklist[i].number + `" maxlength="8" title="请输入购买数量">
+                     <div class="booknum-span-crease">
+                        <div class="booknum-number-increase">
+                           👆
+                        </div>
+                        <div class="booknum-number-decrease">
+                           👇
+                        </div>
+                     </div>
+                     <div class="booknum-number-unit">
+                        本
+                     </div>
+                  </div>
+               </div>
+               <div class="bookall">
+                  <div class="bookall-content">
+                     <span>￥</span><span class="bookall-price">`+ (booklist[i].price * booklist[i].number).toFixed(2) + `</span>
+                  </div>
+               </div>
+               <div class="bookopt">
+                  <div class="bookopt-content">
+                     <span class="delete" ">删除</span>
+                  </div>
+               </div>
+            </div>
+               `
+               }
+               $order.empty()
+               $order.append(content)
+               countTotal()
+            }
+         }
+         else {
+            $order.empty()
+            countTotal()
+         }
+
+         $("span.delete").click(function () {
+            console.log("delete")
+            $(this).parent().parent().parent().remove()
+            countTotal()
+         })
+
+         $("div.booknum-number-increase").click(function () {
+            number = parseInt($(this).parent().prev().val())
+            if (number < 8) {
+
+               $(this).parent().prev().val(number + 1)
+               num = $(this).parent().prev().val()
+               price = parseFloat($(this).parent().parent().parent().prev().children().children().next().text())
+               $(this).parent().parent().parent().next().children("div").children().next().text((num * price).toFixed(2))
+               countTotal()
+            }
+         })
+
+         $("div.booknum-number-decrease").click(function () {
+            number = parseInt($(this).parent().prev().val())
+            if (number > 1) {
+               $(this).parent().prev().val(number - 1)
+               num = $(this).parent().prev().val()
+               price = parseFloat($(this).parent().parent().parent().prev().children().children().next().text()).toFixed(2)
+               $(this).parent().parent().parent().next().children("div").children().next().text((num * price).toFixed(2))
+               countTotal()
+            }
+         })
+
+         $("#header-input").click(function () {
+            if ($(this)[0].checked == true) {
+               console.log("all")
+               for (var i = 0; i < $(".table-checkboxItem").length; i++) {
+                  $(".table-checkboxItem").children()[i].checked = true;
+               }
+
+            } else {
+               console.log("not-all")
+               for (var i = 0; i < $(".table-checkboxItem").length; i++) {
+                  $(".table-checkboxItem").children()[i].checked = false;
+               }
+            }
+            countTotal()
+         })
+
+         $(".input-check").click(function () {
+            countTotal()
+         })
+
+         $("input.booknum-text").blur(function () {
+            num = $(this).val()
+            price = parseFloat($(this).parent().parent().prev().children().children().next().text()).toFixed(2)
+            $(this).parent().parent().next().children("div").children().next().text((num * price).toFixed(2))
+            countTotal()
+         })
+
+         $(".order-update-content").click(function () {
+            booklist = [];
+            $order = $(".order-holder")
+            for (var i = 0; i < $order.length; i++) {
+               if ($(".input-check")[i + 1].checked) {
+                  book = new Object()
+                  book.name = $(".name-content")[i].innerHTML
+                  book.isbn = $(".isbn-content")[i].innerHTML
+                  book.picture = $("img.picture-content")[i].src
+                  book.price = $(".bookprice-price")[i].innerHTML
+                  book.number = $(".booknum-text")[i].value
+                  booklist.push(book)
+               }
+               console.log(booklist)
+               var str = JSON.stringify(booklist);
+               $.cookie("port", str)
+               alert("购物车update成功")
+            }
+         })
+
+         $(".button-buy").click(function () {
+            //请求用户数据
+            var name = "null";
+            var phone = "null";
+            var address = "null";
+            $.ajax({
+               url: serverIP + "/user/" + $(".nav-showname").text(),
+               type: "GET",
+               timeout: 30000,
+               dataType: "json",
+               success: function (data) {
+                  if (data.err) { alert("用户信息错误") }
+                  else {
+                     name = data.user.name;
+                     phone = data.user.phone;
+                     address = data.user.address;
+                     $order = $(".order-holder")
+                     console.log($order.length)
+                     for (var i = 0; i < $order.length; i++) {
+                        if ($(".input-check")[i + 1].checked) {
+                           book = new Object()
+                           book.isbn = $(".isbn-content")[i].innerHTML
+                           book.number = $(".booknum-text")[i].value
+                           $.ajax({
+                              url: serverIP + "/order",
+                              type: "POST",
+                              data: {
+                                 "isbn": book.isbn,
+                                 "perchaseNum": book.number,
+                                 "customerName": name,
+                                 "customerPhone": phone,
+                                 "customerAddr": address
+                              },
+                              timeout: 30000,
+                              dataType: "json",
+                              success: function (data) {
+                                 if (data.err) {
+                                    alert("订单失败")
+                                 } else {
+                                    // 买到
+                                    console.log(i + "success")
+                                 }
+                              },
+                              error: function () {
+                                 alert("请求超时")
+                              }
+                           });
+                        }
+                     }
+                     alert("购买成功")
+                  }
+               },
+               error: function () {
+                  alert("请求超时")
+               }
+            });
+
+
+         })
+
+      })
+
+   </script>
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html" class="login-logout-button">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词" onkeydown="huiche(event,4)">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="cart">
+         <div class="cart-table">
+            <div class="table-checkbox">
+               <input type="checkbox" name="select-all" checked="true" class="input-check" id="header-input">
+               <label for="input-check">全选</label>
+            </div>
+            <div class="table-bookinfo">
+               商品信息
+            </div>
+            <div class="table-item">
+               单价
+            </div>
+            <div class="table-item">
+               数量
+            </div>
+            <div class="table-item">
+               金额
+            </div>
+            <div class="table-item">
+               操作
+            </div>
+
+         </div>
+
+         <div class="order">
+         </div>
+         <div class="order-update">
+            <button class="order-update-content">Update</button>
+         </div>
+         <div class="order-allprice">
+            <div class="order-allprice-title">
+               <div class="title-content">
+                  <h1>金额总数</h1>
+               </div>
+            </div>
+            <div class="order-allprice-price">
+               <div class="price-content">
+                  <h1>
+                     <span>￥</span><span class="order-allprice-price-content">200</span>
+                  </h1>
+               </div>
+            </div>
+            <div class="order-allprice-buy">
+               <div class="buy-content">
+                  <button class="button-buy">结算</button>
+               </div>
+               </divc>
+            </div>
+         </div>
+      </div>
+      <div id="bottom">
+
+      </div>
+</body>
+
+</html>

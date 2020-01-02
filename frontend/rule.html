@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>网上书店</title>
+   <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+
+<body>
+   <div class="header">
+      <div class="top-nav">
+         <div class="section">
+            <div class="nav-show">
+               <a href="index.html">Database assignment</a>
+            </div>
+            <div class="nav-link">
+               <a href="shoppingbasket.html">ShoppingBasket</a>
+               <a href="login.html" class="login-logout-button">Login</a>
+               <a href="createaccount.html">Create Account</a>
+               <a href="aboutus.html">AboutUs/Help</a>
+            </div>
+         </div>
+      </div>
+
+      <div class="logo-wrap">
+         <div class="section">
+            <a href="index.html" class="logo">
+               <img src="images/logonew.png" alt="">
+            </a>
+         </div>
+      </div>
+
+      <div class="nav-main">
+         <div class="section">
+            <div class="nav">
+               <a href="search.html">图书</a>
+               <a href="search.html">电子书</a>
+               <a href="search.html">网络文学</a>
+               <a href="search.html">书籍周边</a>
+               <a href="search.html">图书排行榜</a>
+               <a href="search.html">详细搜索</a>
+            </div>
+            <div class="search">
+               <img src="images/icon-search.png" alt="">
+               <input class="search-input" type="text" placeholder="请输入关键词" onkeydown="huiche(event,4)">
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="section">
+      <div class="help">
+         <div class="help-title">
+            <h1>规则</h1>
+         </div>
+
+         <p>
+            JavaScript 是世界上最流行的脚本语言。
+         </p>
+
+         <p>
+            JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。
+         </p>
+
+         <p>
+            JavaScript 被设计为向 HTML 页面增加交互性。
+         </p>
+
+         <p> 许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+         </p>
+         <p>
+            如果您希望学习更多关于 JavaScript 的知识，请马上访问我们的 JavaScript 教程。
+         </p>
+         <p>内容示例2</p>
+      </div>
+   </div>
+   <div id="bottom">
+
+   </div>
+</body>
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="./node_modules/jquery/dist/jquery.cookie.min.js"></script>
+<script>
+   $('document').ready(function () {
+      var name = $.cookie("name")
+      if (name) {
+         $navshow = $('.nav-show')
+         $navshow.append('<span style="color: white; padding-left:10px" class="navshow-id"> Welcome!' + "</span>"+`<span style="color: white; padding-left:10px" class="nav-showname">`+name + "</span>");
+
+         $logbutton = $('.login-logout-button')
+         $logbutton.text("Logout")
+         $logbutton.attr("href", "./aboutus.html")
+         $logbutton.click(function () {
+            $.removeCookie("name", { path: '/' })
+            $.removeCookie("port",{ path: '/'})
+         });
+      }
+   })
+</script>
+
+</html>
