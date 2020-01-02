@@ -61,11 +61,11 @@
       <div class="perbook-info">
          <div class="perbookinfo-brife">
             <div class="perbookinfo-img">
-               <img src="images/book1.jpg" alt="images/book1.jpg" class="perbook">
+               <img src="" alt="没有图片" class="perbook">
             </div>
             <div class="perbookinfo-content">
                <div class="perbookinfo-name">
-                  <h1 class="perbook-name">论上单如何单杀</h1>
+                  <h1 class="perbook-name"></h1>
                </div>
                <div class="perbookinfo-item">
                   <div class="perbookinfo-item-title">
@@ -74,7 +74,7 @@
                      </div>
                   </div>
                   <div class="perbookinfo-item-content">
-                     <span style="float:left;">￥</span><span class="price-content">100</span>
+                     <span style="float:left;">￥</span><span class="price-content"></span>
                   </div>
                </div>
                <div class="perbookinfo-item">
@@ -84,7 +84,7 @@
                      </div>
                   </div>
                   <div class="perbookinfo-item-content">
-                     <span class="author-content">TheShy</span>
+                     <span class="author-content"></span>
                   </div>
                </div>
                <div class="perbookinfo-item">
@@ -94,7 +94,7 @@
                      </div>
                   </div>
                   <div class="perbookinfo-item-content">
-                     <span class="isbn-content">ASDASDAKSDLASDIOJ123123JOIASD</span>
+                     <span class="isbn-content"></span>
                   </div>
                </div>
                <div class="perbookinfo-item">
@@ -104,7 +104,7 @@
                      </div>
                   </div>
                   <div class="perbookinfo-item-content">
-                     <span class="date-content">2019-1</span>
+                     <span class="date-content"></span>
                   </div>
                </div>
                <div class=dashed-div></div>
@@ -129,10 +129,10 @@
                         本
                      </div>
                      <div class="number-storage" style="color: gray; margin:5px; float: left;">
-                        <span>库存</span><span class="storage-number">10</span><span>本</span>
+                        <span>库存</span><span class="storage-number"></span><span>本</span>
                      </div>
                      <div class="number-storage" style="color: gray; margin:5px; float: left;">
-                        <span>销售量</span><span class="sole-number">10</span><span>本</span>
+                        <span>销售量</span><span class="sole-number"></span><span>本</span>
                      </div>
                   </div>
                </div>
@@ -150,8 +150,7 @@
             </div>
             <div class="perbookinfo-all-content">
                <h2>图书简介</h2>
-               <p>《JavaScript从入门到精通》分为三篇：第一篇为JavaScript语法基础，主要包括JavaScript简介、如何实现JavaScript、数据类型、变量和常量、运算符、语句和函数等内容；第二篇为JavaScript对象，主要包括对象、核心对象、数组、正则表达式、对象模型和事件驱动、窗口与框架、文档对象、表单对象等内容；第三篇为高级技术，主要包括BOM中的其他对象、文档对象模型以及Ajax技术等内容。
-                  《JavaScript从入门到精通》适合于JavaScript的初学者使用，也适合有一定JavaScript基础想进一步提高的网页开发者使用。
+               <p>
                </p>
             </div>
          </div>
@@ -200,7 +199,8 @@
          success: function (data) {
             var data = data.bookList[0]
             console.log(data)
-            $("img.perbook").attr("src", data.pirture);
+            if(!data.picture){data.picture="./images/book1.jpg"}
+            $("img.perbook").attr("src", data.picture);
             $("h1.perbook-name").text(data.name);
             $("span.price-content").text(data.price);
             $("span.author-content").text(data.author);

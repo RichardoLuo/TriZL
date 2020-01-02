@@ -81,7 +81,7 @@ exports.sql = function () {
 	 * @returns {string}
 	 */
 	function updateOrder(state,id) {
-		return "UPDATE Orders SET  OrderState = {0} WHERE  (OrderID = {1})".format(state,id);
+		return "UPDATE Orders SET  OrderStatus = {0} WHERE  (OrderID = {1})".format(state,id);
 	}
 	
 	return{
@@ -90,4 +90,4 @@ exports.sql = function () {
 		deleteOrder: deleteOrder,
 		updateOrder: updateOrder
 	}
-}
+};
