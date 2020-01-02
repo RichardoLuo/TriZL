@@ -49,8 +49,13 @@
 
  2）使用
 
+​	下载 http-server 组件
+
+​	```	npm install http-server -g```
+
 ​	前端界面使用cookie， 所以如果想要看效果，请在Frontend文件夹下使用
 
-​	`python -m SimpleHTTPServer 8888`
+​	`http-server`
 
-​	然后访问`localhost:8888` 来观看效果
+​	然后访问`localhost:8080` 来观看效果
+
