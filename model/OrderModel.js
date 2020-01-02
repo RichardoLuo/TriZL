@@ -90,4 +90,4 @@ exports.sql = function () {
 		deleteOrder: deleteOrder,
 		updateOrder: updateOrder
 	}
-}
+};
