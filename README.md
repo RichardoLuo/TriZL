@@ -33,24 +33,27 @@
 
 2）使用
 
-​	1.`config` 文件夹下面修改 `db.js` 和 `ip.js` 
+​	1.  `config`  文件夹下面修改  `db.js`  和  `ip.js`  
 
-​		`server`确认真正展示的 `swagger api` 界面的主机
+​		 `server`  确认真正展示的   `swagger api`   界面的主机
 
-​		`database`确认使用数据库
+​		  `database`  确认使用数据库
 
- 	2.`node ./bin/www` 启动项目
+ 
+   2.  `node ./bin/www`   启动项目
 
 **Frontend**
 
 1） 配置
 
- 	`js` 文件夹下面 `config.js` 是请求的后端IP，如果在本地运行, 请改成 `localhost`
+   `js`   文件夹下面   `config.js`   是请求的后端IP，如果在本地运行, 请改成   `localhost`
 
  2）使用
 
 ​	前端界面使用cookie， 所以如果想要看效果，请在Frontend文件夹下使用
 
-​	`python -m SimpleHTTPServer 8888`
 
-​	然后访问`localhost:8888` 来观看效果
+​	```python -m SimpleHTTPServer 8888```
+
+
+​	然后访问  `localhost:8888`  来观看效果
