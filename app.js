@@ -82,10 +82,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// favicon
-app.get('/favicon.ico', (req, res) => {
-  res.sendFile("favicon.ico");
-});
 
 //---------- router end -----------
 
