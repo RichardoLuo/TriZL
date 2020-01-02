@@ -1,5 +1,7 @@
 # TriZL 网上书店
-数据库课设
+数据库课设  
+frontend: html, css, javascript, jQuery  
+backend: nodejs, express, and some middlewares
 
 ## 说明
 
@@ -12,7 +14,7 @@
    ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY ''
    ```
    
-2. mysql访问ip权限要打开
+2. mysql访问ip权限要打开(仅针对mysql非本机的情况下);
 
 3. 导入数据库文件(数据库需要提前建立schema: bookstore)
    ```bash
@@ -27,7 +29,7 @@
 
 5. npm install
 
-6. 修改config下的配置文件，主要是ip地址
+6. 修改config下的配置文件，主要是config/ip
 
 7. 根据package.json启动即可
 
