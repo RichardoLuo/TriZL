@@ -58,15 +58,12 @@ backend: nodejs, express, and some middlewares
 
 ​	前端界面使用cookie， 所以如果想要看效果，请在Frontend文件夹下使用
 
-<<<<<<< HEAD
 ​	`http-server`
 
 ​	然后访问`localhost:8080` 来观看效果
 
-=======
 
 ​	```python -m SimpleHTTPServer 8888```
 
 
 ​	然后访问  `localhost:8888`  来观看效果
->>>>>>> b71f5f147022d48874a938173f79339551025faa
